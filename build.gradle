@@ -84,23 +84,6 @@ dependencies {
     // For all intends and purposes: You can treat this dependency as if it is a normal library you would use.
     implementation "net.neoforged:neoforge:${neo_version}"
 
-    //For some reason, this don't work. See the alternative below this comment using cursemaven (https://cursemaven.com/).
-    //api ("com.ldtteam:blockui:${project.blockUI_version}"){
-    //    transitive = false
-    //}
-    //implementation ("com.ldtteam:blockui:${project.blockUI_version}"){
-    //    transitive = false
-    //}
-
-    api ("curse.maven:jei-${project.blockUI_project_ID}:${project.blockUI_file_ID}")
-    {
-        transitive = false
-    }
-    implementation ("curse.maven:ctm-${project.blockUI_project_ID}:${project.blockUI_file_ID}")
-    {
-        transitive = false
-    }
-
     // Example mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
