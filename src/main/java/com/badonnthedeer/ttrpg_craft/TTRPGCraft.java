@@ -1,5 +1,6 @@
 package com.badonnthedeer.ttrpg_craft;
 
+import com.badonnthedeer.ttrpg_craft.client.gui.GuiEventHandler;
 import com.mojang.logging.LogUtils;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -60,7 +61,8 @@ public class TTRPGCraft
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-
+            System.out.println("FMLClientSetupEvent reached.");
+            NeoForge.EVENT_BUS.register(new GuiEventHandler());
         }
     }
 }
