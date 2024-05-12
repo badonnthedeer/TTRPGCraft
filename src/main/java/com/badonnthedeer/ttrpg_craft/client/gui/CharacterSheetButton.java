@@ -8,20 +8,23 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
-import net.neoforged.neoforge.network.PacketDistributor;
-import com.badonnthedeer.ttrpg_craft.common.network.client.CPacketOpenCharSheet;
-//import top.theillusivec4.curios.api.client.ICuriosScreen;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.SimpleContainerData;
+import org.jetbrains.annotations.Nullable;
 
-//import top.theillusivec4.curios.common.network.client.CPacketOpenCurios;
-//import top.theillusivec4.curios.common.network.client.CPacketOpenVanilla;
 
 public class CharacterSheetButton extends ImageButton {
 
     public static final WidgetSprites CharacterSheetSprite =
-            new WidgetSprites(new ResourceLocation(TTRPGCraft.MOD_ID, "character_creation_button"),
-                    new ResourceLocation(TTRPGCraft.MOD_ID, "character_creation_button_highlighted"));
+            new WidgetSprites(new ResourceLocation(TTRPGCraft.MOD_ID, "character_sheet_button"),
+                    new ResourceLocation(TTRPGCraft.MOD_ID, "character_sheet_button_highlighted"));
     private final AbstractContainerScreen<?> parentGui;
 
     CharacterSheetButton(AbstractContainerScreen<?> parentGui, int xIn, int yIn, int widthIn, int heightIn,
@@ -32,7 +35,7 @@ public class CharacterSheetButton extends ImageButton {
                     System.out.println("Button created.");
                     if (mc.player != null)
                     {
-                        PacketDistributor.sendToServer(new CPacketOpenCharSheet());
+                        mc.player.openMenu(new CharacterSheetMenuProvider());
                     }
                 });
         this.parentGui = parentGui;
@@ -49,4 +52,5 @@ public class CharacterSheetButton extends ImageButton {
 
         super.renderWidget(guiGraphics, mouseX, mouseY, partialTicks);
     }
+
 }

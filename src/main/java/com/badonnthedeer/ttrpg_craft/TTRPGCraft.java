@@ -1,9 +1,11 @@
 package com.badonnthedeer.ttrpg_craft;
 
+import com.badonnthedeer.ttrpg_craft.client.gui.CharacterSheetScreen;
 import com.badonnthedeer.ttrpg_craft.client.gui.GuiEventHandler;
 import com.badonnthedeer.ttrpg_craft.client.gui.ModMenuTypes;
 import com.badonnthedeer.ttrpg_craft.common.entity.NewAttributes;
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -11,6 +13,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -65,6 +68,13 @@ public class TTRPGCraft
         {
             System.out.println("FMLClientSetupEvent reached.");
             NeoForge.EVENT_BUS.register(new GuiEventHandler());
+        }
+
+        @SubscribeEvent
+        public static void menusSetup(RegisterMenuScreensEvent event)
+        {
+            System.out.println("RegisterMenuScreensEvent reached.");
+            event.register(ModMenuTypes.CHARACTER_SHEET_MENU.get(), CharacterSheetScreen::new);
         }
     }
 }

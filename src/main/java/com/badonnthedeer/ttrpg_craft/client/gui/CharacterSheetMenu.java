@@ -15,7 +15,12 @@ import static com.badonnthedeer.ttrpg_craft.client.gui.ModMenuTypes.MENUS;
 
 public class CharacterSheetMenu extends AbstractContainerMenu {
 
-    public CharacterSheetMenu(int containerId, Inventory playerInv, FriendlyByteBuf extraData) {
+    /*public CharacterSheetMenu(int containerId, Inventory playerInv, FriendlyByteBuf extraData) {
+        super(ModMenuTypes.CHARACTER_SHEET_MENU.get(), containerId);
+
+    }*/
+
+    public CharacterSheetMenu(int containerId, Inventory playerInv, Player playerRef) {
         super(ModMenuTypes.CHARACTER_SHEET_MENU.get(), containerId);
 
     }
