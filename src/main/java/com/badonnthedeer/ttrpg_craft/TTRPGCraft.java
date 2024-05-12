@@ -1,14 +1,14 @@
 package com.badonnthedeer.ttrpg_craft;
 
 import com.badonnthedeer.ttrpg_craft.client.gui.GuiEventHandler;
+import com.badonnthedeer.ttrpg_craft.client.gui.ModMenuTypes;
+import com.badonnthedeer.ttrpg_craft.common.entity.NewAttributes;
 import com.mojang.logging.LogUtils;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
@@ -34,6 +34,8 @@ public class TTRPGCraft
 
         NeoForge.EVENT_BUS.register(this);
 
+        NewAttributes.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
