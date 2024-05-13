@@ -15,8 +15,8 @@ public class ModMenuTypes {
             DeferredRegister.create(BuiltInRegistries.MENU, TTRPGCraft.MOD_ID);
 
     public static final DeferredHolder<MenuType<?>, MenuType<CharacterSheetMenu>> CHARACTER_SHEET_MENU =
-            registerMenuType(CharacterSheetMenu::new, "character_sheet_menu");
-
+            MENUS.register("character_sheet_menu",  () -> IMenuTypeExtension.create(
+                    CharacterSheetMenu::new) );
 
     private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name)
     {
@@ -26,6 +26,5 @@ public class ModMenuTypes {
     {
         MENUS.register(eventBus);
     }
-
 
 }

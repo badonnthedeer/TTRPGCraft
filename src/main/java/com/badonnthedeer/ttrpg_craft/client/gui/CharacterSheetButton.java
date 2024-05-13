@@ -11,13 +11,7 @@ import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.SimpleContainerData;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.world.SimpleMenuProvider;
 
 
 public class CharacterSheetButton extends ImageButton {
@@ -35,7 +29,9 @@ public class CharacterSheetButton extends ImageButton {
                     System.out.println("Button created.");
                     if (mc.player != null)
                     {
-                        mc.player.openMenu(new CharacterSheetMenuProvider());
+                        System.out.println("Should Open Menu.");
+                        mc.player.openMenu(new SimpleMenuProvider(
+                                (windowId, playerInventory, playerEntity) -> new CharacterSheetMenu(windowId, playerInventory, null), Component.translatable("Character Sheet")));
                     }
                 });
         this.parentGui = parentGui;
