@@ -11,8 +11,8 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class CharacterSheetScreen extends AbstractContainerScreen<CharacterSheetMenu> {
 
-    private static final ResourceLocation TEXTURE =
-            new ResourceLocation(TTRPGCraft.MOD_ID, "textures/gui/character_sheet_gui.png");
+    //private static final ResourceLocation TEXTURE =
+            //new ResourceLocation(TTRPGCraft.MOD_ID, "textures/gui/character_sheet_gui.png");
 
     public CharacterSheetScreen(CharacterSheetMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -22,10 +22,10 @@ public class CharacterSheetScreen extends AbstractContainerScreen<CharacterSheet
     protected void renderBg(GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f,1.0f);
-        RenderSystem.setShaderTexture(0, TEXTURE);
+       // RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - imageWidth) /2;
         int y = (height = imageHeight) /2;
 
-        pGuiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
+        //pGuiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
     }
 }

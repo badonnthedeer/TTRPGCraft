@@ -26,14 +26,14 @@ public class GuiEventHandler
         if (screen instanceof InventoryScreen)
         {
             AbstractContainerScreen<?> gui = (AbstractContainerScreen<?>) screen;
-            boolean isCreative = screen instanceof CreativeModeInventoryScreen;
             Tuple<Integer, Integer> offsets = new Tuple<Integer, Integer>(10,10);
             int x = offsets.getA();
             int y = offsets.getB();
-            int size = isCreative ? 8 : 10;
-            int yOffset = isCreative ? 67 : 81;
-            evt.addListener(
-                    new CharacterSheetButton(gui, gui.getGuiLeft() + x - 2, gui.getGuiTop() + y + yOffset, size, size, CharacterSheetButton.CharacterSheetSprite));
+            int size = 10;
+            int xOffset = 50;
+            int yOffset = 100;
+            //evt.addListener(
+            //        new CharacterSheetButton(gui, gui.getGuiLeft() + x + xOffset, gui.getGuiTop() + y + yOffset, size, size, CharacterSheetButton.CharacterSheetSprite));
         }
     }
 

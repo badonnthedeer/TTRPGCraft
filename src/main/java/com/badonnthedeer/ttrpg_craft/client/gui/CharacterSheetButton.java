@@ -10,15 +10,16 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.SimpleMenuProvider;
 
 
 public class CharacterSheetButton extends ImageButton {
 
-    public static final WidgetSprites CharacterSheetSprite =
-            new WidgetSprites(new ResourceLocation(TTRPGCraft.MOD_ID, "character_sheet_button"),
-                    new ResourceLocation(TTRPGCraft.MOD_ID, "character_sheet_button_highlighted"));
+    //public static final WidgetSprites CharacterSheetSprite =
+            //new WidgetSprites(new ResourceLocation(TTRPGCraft.MOD_ID, "character_sheet_button"),
+                    //new ResourceLocation(TTRPGCraft.MOD_ID, "character_sheet_button_highlighted"));
     private final AbstractContainerScreen<?> parentGui;
 
     CharacterSheetButton(AbstractContainerScreen<?> parentGui, int xIn, int yIn, int widthIn, int heightIn,
@@ -29,9 +30,12 @@ public class CharacterSheetButton extends ImageButton {
                     System.out.println("Button created.");
                     if (mc.player != null)
                     {
-                        System.out.println("Should Open Menu.");
-                        mc.player.openMenu(new SimpleMenuProvider(
-                                (windowId, playerInventory, playerEntity) -> new CharacterSheetMenu(windowId, playerInventory, null), Component.translatable("Character Sheet")));
+                        ServerPlayer serverPlayer = mc.player.getServer().getPlayerList().getPlayer(mc.player.getUUID());
+                        if (serverPlayer != null) {
+                            serverPlayer.openMenu(new SimpleMenuProvider(
+                                    (windowId, playerInventory, playerEntity) -> new CharacterSheetMenu(windowId, playerInventory, null), Component.translatable("Character Sheet")));
+                            System.out.println("Should Open Menu.");
+                        }
                     }
                 });
         this.parentGui = parentGui;
