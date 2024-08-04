@@ -20,6 +20,10 @@ import java.util.random.RandomGenerator;
 @EventBusSubscriber(modid = TTRPGCraft.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
 public class ModEvents
 {
+
+    @SubscribeEvent
+    public static void addAttributes(Attribute)
+
     @SubscribeEvent
     public static void livingIncomingDamage(LivingIncomingDamageEvent event)
     {
@@ -38,7 +42,7 @@ public class ModEvents
                 event.setAmount((float) ThreadLocalRandom.current().nextFloat(minDmg, maxDmg));
             }
             if(entity instanceof Player player){
-                player.sendSystemMessage(Component.literal(event.getAmount() + " Damage."));
+                player.sendSystemMessage(Component.literal(event.getAmount() + " damage."));
             }
         }
 

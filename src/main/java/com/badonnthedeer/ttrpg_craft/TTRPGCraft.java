@@ -5,6 +5,13 @@ import com.badonnthedeer.ttrpg_craft.client.gui.GuiEventHandler;
 import com.badonnthedeer.ttrpg_craft.client.gui.ModMenuTypes;
 import com.badonnthedeer.ttrpg_craft.common.entity.TTRPGAttributes;
 import com.mojang.logging.LogUtils;
+import net.minecraft.core.Holder;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -15,6 +22,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.slf4j.Logger;
 
@@ -74,6 +82,18 @@ public class TTRPGCraft
         {
             System.out.println("RegisterMenuScreensEvent reached.");
             event.register(ModMenuTypes.CHARACTER_SHEET_MENU.get(), CharacterSheetScreen::new);
+        }
+
+        @SubscribeEvent
+        public static void entityAttributesSetup(EntityAttributeCreationEvent event)
+        {
+            System.out.println("Adding new attributes.");
+            AttributeSupplier.Builder builder = AttributeSupplier.builder();
+            for (Holder<Attribute> attr : TTRPGAttributes.TTRPGATTRIBUTES.getEntries())
+            {
+                builder.add(attr);
+            }
+            event.put( , builder.build());
         }
     }
 }
