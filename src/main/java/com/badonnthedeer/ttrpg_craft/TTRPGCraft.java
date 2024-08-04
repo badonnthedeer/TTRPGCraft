@@ -3,9 +3,8 @@ package com.badonnthedeer.ttrpg_craft;
 import com.badonnthedeer.ttrpg_craft.client.gui.CharacterSheetScreen;
 import com.badonnthedeer.ttrpg_craft.client.gui.GuiEventHandler;
 import com.badonnthedeer.ttrpg_craft.client.gui.ModMenuTypes;
-import com.badonnthedeer.ttrpg_craft.common.entity.NewAttributes;
+import com.badonnthedeer.ttrpg_craft.common.entity.TTRPGAttributes;
 import com.mojang.logging.LogUtils;
-import net.minecraft.client.gui.screens.MenuScreens;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -17,7 +16,6 @@ import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import net.neoforged.neoforge.registries.DeferredRegister;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -38,7 +36,7 @@ public class TTRPGCraft
 
         NeoForge.EVENT_BUS.register(this);
 
-        NewAttributes.register(modEventBus);
+        TTRPGAttributes.register(modEventBus);
         ModMenuTypes.register(modEventBus);
     }
 
