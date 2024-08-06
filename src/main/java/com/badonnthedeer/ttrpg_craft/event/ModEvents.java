@@ -28,9 +28,6 @@ public class ModEvents
 {
 
     @SubscribeEvent
-    public static void addAttributes(Attribute)
-
-    @SubscribeEvent
     public static void livingIncomingDamage(LivingIncomingDamageEvent event)
     {
         if (event.getSource().getEntity() instanceof Player entity)
