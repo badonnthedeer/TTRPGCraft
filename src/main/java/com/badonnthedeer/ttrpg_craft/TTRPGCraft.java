@@ -10,9 +10,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.tags.EntityTypeTags;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.player.Player;
@@ -97,15 +95,25 @@ public class TTRPGCraft
         }
 
         @SubscribeEvent
-        public static void entityAttributesSetup(EntityAttributeCreationEvent event)
-        {
-            System.out.println("Adding new attributes.");
-            AttributeSupplier.Builder builder = AttributeSupplier.builder();
-            for (Holder<Attribute> attr : TTRPGAttributes.TTRPGATTRIBUTES.getEntries())
-            {
-                builder.add(attr);
-            }
-            event.put( , builder.build());
+        public static void addAttributes(EntityAttributeModificationEvent event){
+            BuiltInRegistries.ENTITY_TYPE.forEach((type) -> {
+                try
+                {
+                    if(type.getCategory() != EntityType.FIREBALL.getCategory())
+                    {
+                        LOGGER.debug("Successfully added TTRPGAttributes to " + type.getDescriptionId());
+                        event.add((EntityType<? extends LivingEntity>) type, STRENGTH);
+                    }
+                    else if(type.getDescriptionId().equals("entity.minecraft.player") || type.getDescriptionId().equals("entity.minecraft.villager") || type.getDescriptionId().equals("entity.minecraft.snow_golem") || type.getDescriptionId().equals("entity.minecraft.iron_golem"))
+                    {
+                        LOGGER.debug("Successfully added TTRPGAttributes to " + type.getDescriptionId());
+                    }
+                }
+                catch (Exception ignored)
+                {
+                    LOGGER.warn("Failed to add STR to " + type.getDescriptionId());
+                }
+            });
         }
     }
 }
