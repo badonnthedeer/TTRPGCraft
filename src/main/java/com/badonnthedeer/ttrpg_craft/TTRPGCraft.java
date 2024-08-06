@@ -4,16 +4,9 @@ import com.badonnthedeer.ttrpg_craft.client.gui.CharacterSheetScreen;
 import com.badonnthedeer.ttrpg_craft.client.gui.GuiEventHandler;
 import com.badonnthedeer.ttrpg_craft.client.gui.ModMenuTypes;
 import com.badonnthedeer.ttrpg_craft.common.entity.TTRPGAttributes;
-import com.badonnthedeer.ttrpg_craft.util.ModTags;
 import com.mojang.logging.LogUtils;
-import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -23,15 +16,14 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
-import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.slf4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static com.badonnthedeer.ttrpg_craft.common.entity.TTRPGAttributes.STRENGTH;
 import static net.minecraft.tags.EntityTypeTags.SKELETONS;
@@ -44,6 +36,8 @@ public class TTRPGCraft
     public static final String MOD_ID = "ttrpg_craft";
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
+
+    public static Random RAND = new Random();
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
