@@ -107,6 +107,7 @@ public class TTRPGCraft
                     else if(type.getDescriptionId().equals("entity.minecraft.player") || type.getDescriptionId().equals("entity.minecraft.villager") || type.getDescriptionId().equals("entity.minecraft.snow_golem") || type.getDescriptionId().equals("entity.minecraft.iron_golem"))
                     {
                         LOGGER.debug("Successfully added TTRPGAttributes to " + type.getDescriptionId());
+                        event.add((EntityType<? extends LivingEntity>) type, STRENGTH);
                     }
                 }
                 catch (Exception ignored)
