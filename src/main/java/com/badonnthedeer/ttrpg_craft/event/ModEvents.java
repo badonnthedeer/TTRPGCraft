@@ -35,7 +35,7 @@ public class ModEvents
             DamageContainer dmg = event.getContainer();
             ItemStack weapon = entity.getWeaponItem();
             float minDmg = (float) Math.max((((entity.getAttribute(TTRPGAttributes.STRENGTH).getValue() / 2) - 5)), 0);
-            float maxDmg = dmg.getOriginalDamage();
+            float maxDmg = dmg.getOriginalDamage() + (float) ((entity.getAttribute(TTRPGAttributes.STRENGTH).getValue() / 2) - 5);
             if(weapon != null)
             {
                 event.setAmount((float) ThreadLocalRandom.current().nextFloat(minDmg, maxDmg));
