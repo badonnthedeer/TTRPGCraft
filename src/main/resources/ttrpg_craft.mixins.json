@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "com.badonnthedeer.ttrpg_craft.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "PlayerMixin"
+  ],
+  "client": [
+
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

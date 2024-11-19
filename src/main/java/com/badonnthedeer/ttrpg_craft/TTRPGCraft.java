@@ -7,6 +7,7 @@ import com.badonnthedeer.ttrpg_craft.common.entity.TTRPGAttributes;
 import com.mojang.logging.LogUtils;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -19,13 +20,15 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import org.slf4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static com.badonnthedeer.ttrpg_craft.common.entity.TTRPGAttributes.STRENGTH;
+import static com.badonnthedeer.ttrpg_craft.common.entity.TTRPGAttributes.*;
 import static net.minecraft.tags.EntityTypeTags.SKELETONS;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -100,13 +103,16 @@ public class TTRPGCraft
                     }
                     else if(type.getDescriptionId().equals("entity.minecraft.player") || type.getDescriptionId().equals("entity.minecraft.villager") || type.getDescriptionId().equals("entity.minecraft.snow_golem") || type.getDescriptionId().equals("entity.minecraft.iron_golem"))
                     {
-                        LOGGER.debug("Successfully added TTRPGAttributes to " + type.getDescriptionId());
-                        event.add((EntityType<? extends LivingEntity>) type, STRENGTH);
+                        for (DeferredHolder<Attribute, ? extends Attribute> attr : TTRPGATTRIBUTES.getEntries())
+                        {
+                            event.add((EntityType<? extends LivingEntity>) type, attr);
+                        }
+                        LOGGER.debug("Successfully added all TTRPGAttributes to " + type.getDescriptionId());
                     }
                 }
                 catch (Exception ignored)
                 {
-                    LOGGER.warn("Failed to add STR to " + type.getDescriptionId());
+                    LOGGER.warn("Failed to add TTRPGAttributes to " + type.getDescriptionId());
                 }
             });
         }
