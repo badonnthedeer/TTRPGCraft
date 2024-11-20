@@ -96,18 +96,17 @@ public class TTRPGCraft
             BuiltInRegistries.ENTITY_TYPE.forEach((type) -> {
                 try
                 {
-                    if(type.getCategory() != EntityType.FIREBALL.getCategory())
-                    {
-                        LOGGER.debug("Successfully added TTRPGAttributes to " + type.getDescriptionId());
-                        event.add((EntityType<? extends LivingEntity>) type, STRENGTH);
-                    }
-                    else if(type.getDescriptionId().equals("entity.minecraft.player") || type.getDescriptionId().equals("entity.minecraft.villager") || type.getDescriptionId().equals("entity.minecraft.snow_golem") || type.getDescriptionId().equals("entity.minecraft.iron_golem"))
+                    if(type.getDescriptionId().equals("entity.minecraft.player") ||
+                            type.getDescriptionId().equals("entity.minecraft.villager") ||
+                            type.getDescriptionId().equals("entity.minecraft.snow_golem") ||
+                            type.getDescriptionId().equals("entity.minecraft.iron_golem") ||
+                            type.getCategory() != EntityType.FIREBALL.getCategory())
                     {
                         for (DeferredHolder<Attribute, ? extends Attribute> attr : TTRPGATTRIBUTES.getEntries())
                         {
                             event.add((EntityType<? extends LivingEntity>) type, attr);
                         }
-                        LOGGER.debug("Successfully added all TTRPGAttributes to " + type.getDescriptionId());
+                        LOGGER.debug("Successfully added TTRPGAttributes to " + type.getDescriptionId());
                     }
                 }
                 catch (Exception ignored)
