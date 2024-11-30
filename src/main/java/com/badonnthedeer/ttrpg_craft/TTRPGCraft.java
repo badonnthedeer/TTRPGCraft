@@ -21,15 +21,11 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
 import org.slf4j.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import static com.badonnthedeer.ttrpg_craft.common.entity.TTRPGAttributes.*;
-import static net.minecraft.tags.EntityTypeTags.SKELETONS;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(TTRPGCraft.MOD_ID)

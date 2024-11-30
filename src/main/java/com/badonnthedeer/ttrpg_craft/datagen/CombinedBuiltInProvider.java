@@ -13,7 +13,7 @@ import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-import static com.badonnthedeer.ttrpg_craft.registry.DamageTypes.FIRE_DAMAGE;
+import static com.badonnthedeer.ttrpg_craft.registry.ModDamageTypes.FIRE_DAMAGE;
 
 public class CombinedBuiltInProvider extends DatapackBuiltinEntriesProvider {
 
