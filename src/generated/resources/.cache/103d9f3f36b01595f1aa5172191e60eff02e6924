@@ -1,0 +1,9 @@
+// 1.21	2024-11-30T00:43:46.5917091	Registries
+3029b09e37665353408e1039ad96ae74b484e003 data/ttrpg_craft/damage_type/acid_damage.json
+7b602de8a53c1fd7123df484e809330b1e994386 data/ttrpg_craft/damage_type/cold_damage.json
+9f6cc0674e78130d05fd1c53df451027ee95ad28 data/ttrpg_craft/damage_type/fire_damage.json
+effaf5ffff5ae8881458eca8303fac69959c5efc data/ttrpg_craft/damage_type/lightning_damage.json
+00950780dbecc631c52ffa1b6ce23004b669cb1f data/ttrpg_craft/damage_type/necrotic_damage.json
+745613266ba91a412bcad431501891411367272e data/ttrpg_craft/damage_type/nonmagical_damage.json
+b9cf66a88bf2f82405c826e1d5c27c5b14c5e25e data/ttrpg_craft/damage_type/radiant_damage.json
+08ad94d86417c5ffa0f636a8a8c21d18df4e3300 data/ttrpg_craft/damage_type/thunder_damage.json

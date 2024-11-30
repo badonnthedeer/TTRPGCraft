@@ -13,7 +13,7 @@ import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-import static com.badonnthedeer.ttrpg_craft.registry.ModDamageTypes.FIRE_DAMAGE;
+import static com.badonnthedeer.ttrpg_craft.registry.ModDamageTypes.*;
 
 public class CombinedBuiltInProvider extends DatapackBuiltinEntriesProvider {
 
@@ -23,6 +23,41 @@ public class CombinedBuiltInProvider extends DatapackBuiltinEntriesProvider {
                 // The parameters map to the values of the JSON file, in the order seen above.
                 // All parameters except for the message id and the exhaustion value are optional.
                 bootstrap.register(FIRE_DAMAGE, new DamageType(FIRE_DAMAGE.location().toString(),
+                        DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER,
+                        0.1f,
+                        DamageEffects.BURNING,
+                        DeathMessageType.DEFAULT));
+                bootstrap.register(COLD_DAMAGE, new DamageType(COLD_DAMAGE.location().toString(),
+                        DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER,
+                        0.1f,
+                        DamageEffects.FREEZING,
+                        DeathMessageType.DEFAULT));
+                bootstrap.register(ACID_DAMAGE, new DamageType(ACID_DAMAGE.location().toString(),
+                        DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER,
+                        0.1f,
+                        DamageEffects.BURNING,
+                        DeathMessageType.DEFAULT));
+                bootstrap.register(LIGHTNING_DAMAGE, new DamageType(LIGHTNING_DAMAGE.location().toString(),
+                        DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER,
+                        0.1f,
+                        DamageEffects.HURT,
+                        DeathMessageType.DEFAULT));
+                bootstrap.register(THUNDER_DAMAGE, new DamageType(THUNDER_DAMAGE.location().toString(),
+                        DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER,
+                        0.1f,
+                        DamageEffects.HURT,
+                        DeathMessageType.DEFAULT));
+                bootstrap.register(RADIANT_DAMAGE, new DamageType(RADIANT_DAMAGE.location().toString(),
+                        DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER,
+                        0.1f,
+                        DamageEffects.HURT,
+                        DeathMessageType.DEFAULT));
+                bootstrap.register(NECROTIC_DAMAGE, new DamageType(NECROTIC_DAMAGE.location().toString(),
+                        DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER,
+                        0.1f,
+                        DamageEffects.HURT,
+                        DeathMessageType.DEFAULT));
+                bootstrap.register(NONMAGICAL_PHYSICAL_DAMAGE, new DamageType(NONMAGICAL_PHYSICAL_DAMAGE.location().toString(),
                         DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER,
                         0.1f,
                         DamageEffects.HURT,
