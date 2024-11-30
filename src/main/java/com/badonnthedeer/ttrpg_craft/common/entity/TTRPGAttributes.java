@@ -46,6 +46,50 @@ public class TTRPGAttributes {
             () -> new RangedAttribute("ttrpgCraft.Crit_Chance", 5, 5,100)
     );
 
+    public static final DeferredHolder<Attribute, Attribute> FIRE_RESIST = TTRPGATTRIBUTES.register(
+            "fire_resist", // Our registry name
+            () -> new RangedAttribute("ttrpgCraft.Fire_Resist", 0, -100,100)
+    );
+    public static final DeferredHolder<Attribute, Attribute> COLD_RESIST = TTRPGATTRIBUTES.register(
+            "cold_resist", // Our registry name
+            () -> new RangedAttribute("ttrpgCraft.Cold_Resist", 0, -100,100)
+    );
+    public static final DeferredHolder<Attribute, Attribute> ACID_RESIST = TTRPGATTRIBUTES.register(
+            "acid_resist", // Our registry name
+            () -> new RangedAttribute("ttrpgCraft.Acid_Resist", 0, -100,100)
+    );
+    public static final DeferredHolder<Attribute, Attribute> LIGHTNING_RESIST = TTRPGATTRIBUTES.register(
+            "lightning_resist", // Our registry name
+            () -> new RangedAttribute("ttrpgCraft.Lightning_Resist", 0, -100,100)
+    );
+    public static final DeferredHolder<Attribute, Attribute> SONIC_RESIST = TTRPGATTRIBUTES.register(
+            "sonic_resist", // Our registry name
+            () -> new RangedAttribute("ttrpgCraft.Sonic_Resist", 0, -100,100)
+    );
+    public static final DeferredHolder<Attribute, Attribute> FORCE_RESIST = TTRPGATTRIBUTES.register(
+            "force_resist", // Our registry name
+            () -> new RangedAttribute("ttrpgCraft.Force_Resist", 0, -100,100)
+    );
+    public static final DeferredHolder<Attribute, Attribute> PSYCHIC_RESIST = TTRPGATTRIBUTES.register(
+            "psychic_resist", // Our registry name
+            () -> new RangedAttribute("ttrpgCraft.Psychic_Resist", 0, -100,100)
+    );
+    public static final DeferredHolder<Attribute, Attribute> POISON_RESIST = TTRPGATTRIBUTES.register(
+            "poison_resist", // Our registry name
+            () -> new RangedAttribute("ttrpgCraft.Poison_Resist", 0, -100,100)
+    );
+    public static final DeferredHolder<Attribute, Attribute> NECROTIC_RESIST = TTRPGATTRIBUTES.register(
+            "necrotic_resist", // Our registry name
+            () -> new RangedAttribute("ttrpgCraft.Necrotic_Resist", 0, -100,100)
+    );
+    public static final DeferredHolder<Attribute, Attribute> RADIANT_RESIST = TTRPGATTRIBUTES.register(
+            "radiant_resist", // Our registry name
+            () -> new RangedAttribute("ttrpgCraft.Radiant_Resist", 0, -100,100)
+    );
+    public static final DeferredHolder<Attribute, Attribute> NONMAGICAL_RESIST = TTRPGATTRIBUTES.register(
+            "nonmagical_resist", // Our registry name
+            () -> new RangedAttribute("ttrpgCraft.Nonmagical_Resist", 0, -100,100)
+    );
 
     @SubscribeEvent
     public static void register(IEventBus eventBus)
