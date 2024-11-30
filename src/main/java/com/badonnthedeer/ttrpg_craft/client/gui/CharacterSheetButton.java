@@ -14,6 +14,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.SimpleMenuProvider;
 
+import static com.badonnthedeer.ttrpg_craft.TTRPGCraft.LOGGER;
+
 
 public class CharacterSheetButton extends ImageButton {
 
@@ -27,7 +29,7 @@ public class CharacterSheetButton extends ImageButton {
         super(xIn, yIn, widthIn, heightIn, sprites,
                 (button) -> {
                     Minecraft mc = Minecraft.getInstance();
-                    System.out.println("Button created.");
+                    LOGGER.debug("Button created.");
                     if (mc.player != null)
                     {
                         ServerPlayer serverPlayer = mc.player.getServer().getPlayerList().getPlayer(mc.player.getUUID());

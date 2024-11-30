@@ -11,6 +11,8 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.lwjgl.glfw.GLFW;
+
+import static com.badonnthedeer.ttrpg_craft.TTRPGCraft.LOGGER;
 // top.theillusivec4.curios.client.CuriosClientConfig;
 
 
@@ -22,7 +24,7 @@ public class GuiEventHandler
     {
         Screen screen = evt.getScreen();
 
-        System.out.println("custom code reached.");
+        LOGGER.debug("onInventoryGuiInit Ran");
         if (screen instanceof InventoryScreen)
         {
             AbstractContainerScreen<?> gui = (AbstractContainerScreen<?>) screen;

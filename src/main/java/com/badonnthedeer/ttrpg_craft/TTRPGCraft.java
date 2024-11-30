@@ -80,14 +80,14 @@ public class TTRPGCraft
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-            System.out.println("FMLClientSetupEvent reached.");
+            LOGGER.debug("FMLClientSetupEvent reached.");
             NeoForge.EVENT_BUS.register(new GuiEventHandler());
         }
 
         @SubscribeEvent
         public static void menusSetup(RegisterMenuScreensEvent event)
         {
-            System.out.println("RegisterMenuScreensEvent reached.");
+            LOGGER.debug("RegisterMenuScreensEvent reached.");
             event.register(ModMenuTypes.CHARACTER_SHEET_MENU.get(), CharacterSheetScreen::new);
         }
 
