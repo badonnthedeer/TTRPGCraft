@@ -23,8 +23,8 @@ public class CharacterSheetScreen extends AbstractContainerScreen<CharacterSheet
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f,1.0f);
        // RenderSystem.setShaderTexture(0, TEXTURE);
-        int x = (width - imageWidth) /2;
-        int y = (height = imageHeight) /2;
+        int x = (this.width - this.imageWidth) /2;
+        int y = (this.height = this.imageHeight) /2;
 
         //pGuiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
     }

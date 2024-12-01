@@ -25,9 +25,8 @@ public class GuiEventHandler
         Screen screen = evt.getScreen();
 
         LOGGER.debug("onInventoryGuiInit Ran");
-        if (screen instanceof InventoryScreen)
+        if (screen instanceof InventoryScreen gui)
         {
-            AbstractContainerScreen<?> gui = (AbstractContainerScreen<?>) screen;
             Tuple<Integer, Integer> offsets = new Tuple<Integer, Integer>(10,10);
             int x = offsets.getA();
             int y = offsets.getB();
@@ -64,7 +63,6 @@ public class GuiEventHandler
 
         if (!gui.isInventoryOpen())
         {
-            return;
         }
     }
 }

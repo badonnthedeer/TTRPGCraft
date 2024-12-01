@@ -48,9 +48,9 @@ public class CharacterSheetButton extends ImageButton {
                              float partialTicks) {
         Tuple<Integer, Integer> offsets = new Tuple<Integer, Integer>(10,10);
                 //CuriosScreen.getButtonOffset(parentGui instanceof CreativeModeInventoryScreen);
-        this.setX(parentGui.getGuiLeft() + offsets.getA() + 2);
-        int yOffset = parentGui instanceof CreativeModeInventoryScreen ? 70 : 85;
-        this.setY(parentGui.getGuiTop() + offsets.getB() + yOffset);
+        this.setX(this.parentGui.getGuiLeft() + offsets.getA() + 2);
+        int yOffset = this.parentGui instanceof CreativeModeInventoryScreen ? 70 : 85;
+        this.setY(this.parentGui.getGuiTop() + offsets.getB() + yOffset);
 
         super.renderWidget(guiGraphics, mouseX, mouseY, partialTicks);
     }
