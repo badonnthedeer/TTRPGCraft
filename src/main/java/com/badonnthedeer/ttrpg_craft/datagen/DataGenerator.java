@@ -29,6 +29,7 @@ public class DataGenerator {
         //Combined BuiltInEntriesProvider. Docs allude to sticking it directly in the gatherData function, but I like the organization Kaupenjoe provides.
         generator.addProvider(event.includeServer(), new CombinedBuiltInProvider(packOutput, lookupProvider, CombinedBuiltInProvider.BUILDER, Set.of(TTRPGCraft.MOD_ID)));
 
+        generator.addProvider(event.includeServer(), new ModDamageTypeTagProvider(packOutput, lookupProvider, TTRPGCraft.MOD_ID, existingFileHelper));
 
         LOGGER.debug("End datagen");
     }
