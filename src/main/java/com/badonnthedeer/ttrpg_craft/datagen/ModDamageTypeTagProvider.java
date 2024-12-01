@@ -68,13 +68,13 @@ public class ModDamageTypeTagProvider extends DamageTypeTagsProvider
         this.tag(DamageTypeTags.PANIC_CAUSES).addTags(ModDamageTypeTags.IS_ACID, ModDamageTypeTags.IS_THUNDER, ModDamageTypeTags.IS_RADIANT, ModDamageTypeTags.IS_NECROTIC);
 
         //minecraft compat
-
-        this.tag(DamageTypeTags.IS_FIRE)
-                .addTag(ModDamageTypeTags.IS_FIRE);
-        this.tag(DamageTypeTags.IS_FREEZING)
-                .addTag(ModDamageTypeTags.IS_COLD);
-        this.tag(DamageTypeTags.IS_LIGHTNING)
-                .addTag(ModDamageTypeTags.IS_LIGHTNING);
+//      Doesn't work.
+//        this.tag(DamageTypeTags.IS_FIRE)
+//                .addTag(ModDamageTypeTags.IS_FIRE);
+//        this.tag(DamageTypeTags.IS_FREEZING)
+//                .addTag(ModDamageTypeTags.IS_COLD);
+//        this.tag(DamageTypeTags.IS_LIGHTNING)
+//                .addTag(ModDamageTypeTags.IS_LIGHTNING);
 
         //neoforge compat
 
