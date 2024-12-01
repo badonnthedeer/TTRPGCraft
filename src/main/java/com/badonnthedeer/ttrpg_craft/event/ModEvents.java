@@ -146,7 +146,7 @@ public class ModEvents
     {
         if (event.getSource().getEntity() instanceof Player player)
         {
-            player.sendSystemMessage(Component.literal(String.format("%.2f -> %.2f", event.getOriginalDamage(), event.getNewDamage())));
+            player.sendSystemMessage(Component.literal(String.format("%.2f -> %s %.2f", event.getOriginalDamage(), event.getSource().type().msgId(), event.getNewDamage())));
         }
     }
 }
