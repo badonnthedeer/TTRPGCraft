@@ -6,11 +6,8 @@ import com.badonnthedeer.ttrpg_craft.registry.ModDamageTypes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.DamageTypeTagsProvider;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.DamageTypeTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -48,7 +45,7 @@ public class ModDamageTypeTagProvider extends DamageTypeTagsProvider
         this.tag(ModDamageTypeTags.IS_POISON)
                 .add(ModDamageTypes.POISON_DAMAGE);
 
-        this.tag(ModDamageTypeTags.IS_NONMAGICAL)
+        this.tag(ModDamageTypeTags.IS_PHYSICAL)
                 .add(DamageTypes.ARROW,
                 DamageTypes.CACTUS,
                 DamageTypes.FALL,
@@ -88,8 +85,8 @@ public class ModDamageTypeTagProvider extends DamageTypeTagsProvider
         this.tag(Tags.DamageTypes.IS_POISON).addTag(ModDamageTypeTags.IS_POISON);
         this.tag(ModDamageTypeTags.IS_POISON).addTag(Tags.DamageTypes.IS_POISON);
 
-        this.tag(Tags.DamageTypes.IS_PHYSICAL).addTag(ModDamageTypeTags.IS_NONMAGICAL);
-        this.tag(ModDamageTypeTags.IS_NONMAGICAL).addTag(Tags.DamageTypes.IS_PHYSICAL);
+        this.tag(Tags.DamageTypes.IS_PHYSICAL).addTag(ModDamageTypeTags.IS_PHYSICAL);
+        this.tag(ModDamageTypeTags.IS_PHYSICAL).addTag(Tags.DamageTypes.IS_PHYSICAL);
 
     }
 

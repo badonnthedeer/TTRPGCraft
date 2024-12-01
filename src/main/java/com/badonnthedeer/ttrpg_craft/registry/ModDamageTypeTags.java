@@ -20,7 +20,7 @@ public class ModDamageTypeTags {
     public static final TagKey<DamageType> IS_RADIANT = create("is_radiant");
     public static final TagKey<DamageType> IS_NECROTIC = create("is_necrotic");
 
-    public static final TagKey<DamageType> IS_NONMAGICAL = create("is_nonmagical");
+    public static final TagKey<DamageType> IS_PHYSICAL = create("is_physical");
 
     private static TagKey<DamageType> create(String name) {
         return TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(TTRPGCraft.MOD_ID, name));

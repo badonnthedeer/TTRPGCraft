@@ -42,6 +42,10 @@ public class TTRPGAttributes {
             "crit_chance", // Our registry name
             () -> new RangedAttribute("ttrpgCraft.Crit_Chance", 5, 5,100)
     );
+    public static final DeferredHolder<Attribute, Attribute> MAGICAL_UNARMED_ATTACKS = TTRPGATTRIBUTES.register(
+            "magical_unarmed_attacks", // Our registry name
+            () -> new RangedAttribute("ttrpgCraft.Magical_Unarmed_Attacks", 0, 0, 1)
+    );
 
     public static final DeferredHolder<Attribute, Attribute> FIRE_RESIST = TTRPGATTRIBUTES.register(
             "fire_resist", // Our registry name
@@ -83,9 +87,9 @@ public class TTRPGAttributes {
             "radiant_resist", // Our registry name
             () -> new RangedAttribute("ttrpgCraft.Radiant_Resist", 0, -100,100)
     );
-    public static final DeferredHolder<Attribute, Attribute> NONMAGICAL_RESIST = TTRPGATTRIBUTES.register(
-            "nonmagical_resist", // Our registry name
-            () -> new RangedAttribute("ttrpgCraft.Nonmagical_Resist", 0, -100,100)
+    public static final DeferredHolder<Attribute, Attribute> PHYSICAL_RESIST = TTRPGATTRIBUTES.register(
+            "physical_resist", // Our registry name
+            () -> new RangedAttribute("ttrpgCraft.Physical_Resist", 0, -100,100)
     );
 
     @SubscribeEvent
