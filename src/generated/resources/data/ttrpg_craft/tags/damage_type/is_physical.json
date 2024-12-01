@@ -1,0 +1,23 @@
+{
+  "values": [
+    "minecraft:arrow",
+    "minecraft:cactus",
+    "minecraft:fall",
+    "minecraft:bad_respawn_point",
+    "minecraft:falling_anvil",
+    "minecraft:falling_block",
+    "minecraft:falling_stalactite",
+    "minecraft:fireworks",
+    "minecraft:fly_into_wall",
+    "minecraft:mob_attack",
+    "minecraft:player_attack",
+    "minecraft:mob_projectile",
+    "minecraft:spit",
+    "minecraft:stalagmite",
+    "minecraft:sting",
+    "minecraft:sweet_berry_bush",
+    "minecraft:thrown",
+    "minecraft:trident",
+    "#neoforge:is_physical"
+  ]
+}

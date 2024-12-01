@@ -1,0 +1,7 @@
+{
+  "values": [
+    "ttrpg_craft:necrotic_damage",
+    "minecraft:wither",
+    "#neoforge:is_wither"
+  ]
+}

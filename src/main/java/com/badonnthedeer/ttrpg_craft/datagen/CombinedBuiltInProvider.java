@@ -37,12 +37,27 @@ public class CombinedBuiltInProvider extends DatapackBuiltinEntriesProvider {
                         0.1f,
                         DamageEffects.BURNING,
                         DeathMessageType.DEFAULT));
+                bootstrap.register(POISON_DAMAGE, new DamageType(POISON_DAMAGE.location().toString(),
+                        DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER,
+                        0.1f,
+                        DamageEffects.HURT,
+                        DeathMessageType.DEFAULT));
                 bootstrap.register(LIGHTNING_DAMAGE, new DamageType(LIGHTNING_DAMAGE.location().toString(),
                         DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER,
                         0.1f,
                         DamageEffects.HURT,
                         DeathMessageType.DEFAULT));
                 bootstrap.register(THUNDER_DAMAGE, new DamageType(THUNDER_DAMAGE.location().toString(),
+                        DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER,
+                        0.1f,
+                        DamageEffects.HURT,
+                        DeathMessageType.DEFAULT));
+                bootstrap.register(FORCE_DAMAGE, new DamageType(FORCE_DAMAGE.location().toString(),
+                        DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER,
+                        0.1f,
+                        DamageEffects.HURT,
+                        DeathMessageType.DEFAULT));
+                bootstrap.register(PSYCHIC_DAMAGE, new DamageType(PSYCHIC_DAMAGE.location().toString(),
                         DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER,
                         0.1f,
                         DamageEffects.HURT,
@@ -57,7 +72,7 @@ public class CombinedBuiltInProvider extends DatapackBuiltinEntriesProvider {
                         0.1f,
                         DamageEffects.HURT,
                         DeathMessageType.DEFAULT));
-                bootstrap.register(NONMAGICAL_PHYSICAL_DAMAGE, new DamageType(NONMAGICAL_PHYSICAL_DAMAGE.location().toString(),
+                bootstrap.register(PHYSICAL_DAMAGE, new DamageType(PHYSICAL_DAMAGE.location().toString(),
                         DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER,
                         0.1f,
                         DamageEffects.HURT,

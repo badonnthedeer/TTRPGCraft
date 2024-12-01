@@ -1,0 +1,6 @@
+{
+  "values": [
+    "ttrpg_craft:lightning_damage",
+    "#minecraft:is_lightning"
+  ]
+}

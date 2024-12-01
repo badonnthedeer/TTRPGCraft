@@ -1,0 +1,8 @@
+{
+  "values": [
+    "#ttrpg_craft:is_acid",
+    "#ttrpg_craft:is_thunder",
+    "#ttrpg_craft:is_radiant",
+    "#ttrpg_craft:is_necrotic"
+  ]
+}
