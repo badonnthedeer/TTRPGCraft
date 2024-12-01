@@ -20,9 +20,17 @@ public class ModDamageTypeTagProvider extends DamageTypeTagsProvider
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
         this.tag(ModDamageTypeTags.IS_FIRE)
-                .add(ModDamageTypes.FIRE_DAMAGE);
+                .add(ModDamageTypes.FIRE_DAMAGE,
+                        DamageTypes.IN_FIRE,
+                        DamageTypes.ON_FIRE,
+                        DamageTypes.FIREBALL,
+                        DamageTypes.HOT_FLOOR,
+                        DamageTypes.LAVA,
+                        DamageTypes.CAMPFIRE,
+                        DamageTypes.UNATTRIBUTED_FIREBALL);
         this.tag(ModDamageTypeTags.IS_COLD)
-                .add(ModDamageTypes.COLD_DAMAGE);
+                .add(ModDamageTypes.COLD_DAMAGE,
+                        DamageTypes.FREEZE);
         this.tag(ModDamageTypeTags.IS_ACID)
                 .add(ModDamageTypes.ACID_DAMAGE);
         this.tag(ModDamageTypeTags.IS_POISON)
@@ -31,7 +39,10 @@ public class ModDamageTypeTagProvider extends DamageTypeTagsProvider
                 .add(ModDamageTypes.LIGHTNING_DAMAGE);
         this.tag(ModDamageTypeTags.IS_THUNDER)
                 .add(ModDamageTypes.THUNDER_DAMAGE,
-                DamageTypes.SONIC_BOOM);
+                        DamageTypes.PLAYER_EXPLOSION,
+                        DamageTypes.EXPLOSION,
+                        DamageTypes.SONIC_BOOM,
+                        DamageTypes.BAD_RESPAWN_POINT);
         this.tag(ModDamageTypeTags.IS_FORCE)
                 .add(ModDamageTypes.FORCE_DAMAGE);
         this.tag(ModDamageTypeTags.IS_PSYCHIC)
@@ -40,41 +51,39 @@ public class ModDamageTypeTagProvider extends DamageTypeTagsProvider
                 .add(ModDamageTypes.RADIANT_DAMAGE);
         this.tag(ModDamageTypeTags.IS_NECROTIC)
                 .add(ModDamageTypes.NECROTIC_DAMAGE,
-                DamageTypes.WITHER);
-        this.tag(ModDamageTypeTags.IS_POISON)
-                .add(ModDamageTypes.POISON_DAMAGE);
+                        DamageTypes.WITHER);
 
         this.tag(ModDamageTypeTags.IS_PHYSICAL)
                 .add(DamageTypes.ARROW,
-                DamageTypes.CACTUS,
-                DamageTypes.FALL,
-                DamageTypes.BAD_RESPAWN_POINT,
-                DamageTypes.FALLING_ANVIL,
-                DamageTypes.FALLING_BLOCK,
-                DamageTypes.FALLING_STALACTITE,
-                DamageTypes.FIREWORKS,
-                DamageTypes.FLY_INTO_WALL,
-                DamageTypes.MOB_ATTACK,
-                DamageTypes.PLAYER_ATTACK,
-                DamageTypes.MOB_PROJECTILE,
-                DamageTypes.SPIT,
-                DamageTypes.STALAGMITE,
-                DamageTypes.STING,
-                DamageTypes.SWEET_BERRY_BUSH,
-                DamageTypes.THROWN,
-                DamageTypes.TRIDENT);
+                        DamageTypes.CACTUS,
+                        DamageTypes.FALL,
+                        DamageTypes.FALLING_ANVIL,
+                        DamageTypes.FALLING_BLOCK,
+                        DamageTypes.FALLING_STALACTITE,
+                        DamageTypes.FIREWORKS,
+                        DamageTypes.FLY_INTO_WALL,
+                        DamageTypes.MOB_ATTACK,
+                        DamageTypes.PLAYER_ATTACK,
+                        DamageTypes.MOB_PROJECTILE,
+                        DamageTypes.SPIT,
+                        DamageTypes.STALAGMITE,
+                        DamageTypes.STING,
+                        DamageTypes.SWEET_BERRY_BUSH,
+                        DamageTypes.THROWN,
+                        DamageTypes.TRIDENT);
 
         this.tag(DamageTypeTags.WITHER_IMMUNE_TO).add(ModDamageTypes.NECROTIC_DAMAGE);
-        this.tag(DamageTypeTags.PANIC_CAUSES).addTags(ModDamageTypeTags.IS_ACID, ModDamageTypeTags.IS_THUNDER, ModDamageTypeTags.IS_RADIANT, ModDamageTypeTags.IS_NECROTIC);
-
-        //minecraft compat
-//      Doesn't work.
-//        this.tag(DamageTypeTags.IS_FIRE)
-//                .addTag(ModDamageTypeTags.IS_FIRE);
-//        this.tag(DamageTypeTags.IS_FREEZING)
-//                .addTag(ModDamageTypeTags.IS_COLD);
-//        this.tag(DamageTypeTags.IS_LIGHTNING)
-//                .addTag(ModDamageTypeTags.IS_LIGHTNING);
+        this.tag(DamageTypeTags.PANIC_CAUSES)
+                .addTags(ModDamageTypeTags.IS_FIRE,
+                        ModDamageTypeTags.IS_COLD,
+                        ModDamageTypeTags.IS_ACID,
+                        ModDamageTypeTags.IS_POISON,
+                        ModDamageTypeTags.IS_LIGHTNING,
+                        ModDamageTypeTags.IS_THUNDER,
+                        ModDamageTypeTags.IS_FORCE,
+                        ModDamageTypeTags.IS_PSYCHIC,
+                        ModDamageTypeTags.IS_RADIANT,
+                        ModDamageTypeTags.IS_NECROTIC);
 
         //neoforge compat
 
