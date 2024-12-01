@@ -25,11 +25,12 @@ public class DataGenerator {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        LOGGER.debug("CombinedBuiltInProvider running");
         //Combined BuiltInEntriesProvider. Docs allude to sticking it directly in the gatherData function, but I like the organization Kaupenjoe provides.
+        LOGGER.debug("Generating combined additions to Built-in Registries...");
         generator.addProvider(event.includeServer(), new CombinedBuiltInProvider(packOutput, lookupProvider, CombinedBuiltInProvider.BUILDER, Set.of(TTRPGCraft.MOD_ID)));
 
-        generator.addProvider(event.includeServer(), new ModDamageTypeTagProvider(packOutput, lookupProvider, TTRPGCraft.MOD_ID, existingFileHelper));
+        LOGGER.debug("Generating DamageTypeTags...");
+        generator.addProvider(event.includeServer(), new ModDamageTypeTagProvider(packOutput,  new CombinedBuiltInProvider(packOutput, lookupProvider, CombinedBuiltInProvider.BUILDER, Set.of(TTRPGCraft.MOD_ID)).getRegistryProvider(), TTRPGCraft.MOD_ID, existingFileHelper));
 
         LOGGER.debug("End datagen");
     }
