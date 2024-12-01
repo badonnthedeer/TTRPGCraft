@@ -55,13 +55,17 @@ public class TTRPGAttributes {
             "acid_resist", // Our registry name
             () -> new RangedAttribute("ttrpgCraft.Acid_Resist", 0, -100,100)
     );
+    public static final DeferredHolder<Attribute, Attribute> POISON_RESIST = TTRPGATTRIBUTES.register(
+            "poison_resist", // Our registry name
+            () -> new RangedAttribute("ttrpgCraft.Poison_Resist", 0, -100,100)
+    );
     public static final DeferredHolder<Attribute, Attribute> LIGHTNING_RESIST = TTRPGATTRIBUTES.register(
             "lightning_resist", // Our registry name
             () -> new RangedAttribute("ttrpgCraft.Lightning_Resist", 0, -100,100)
     );
-    public static final DeferredHolder<Attribute, Attribute> SONIC_RESIST = TTRPGATTRIBUTES.register(
-            "sonic_resist", // Our registry name
-            () -> new RangedAttribute("ttrpgCraft.Sonic_Resist", 0, -100,100)
+    public static final DeferredHolder<Attribute, Attribute> THUNDER_RESIST = TTRPGATTRIBUTES.register(
+            "thunder_resist", // Our registry name
+            () -> new RangedAttribute("ttrpgCraft.Thunder_Resist", 0, -100,100)
     );
     public static final DeferredHolder<Attribute, Attribute> FORCE_RESIST = TTRPGATTRIBUTES.register(
             "force_resist", // Our registry name
@@ -70,10 +74,6 @@ public class TTRPGAttributes {
     public static final DeferredHolder<Attribute, Attribute> PSYCHIC_RESIST = TTRPGATTRIBUTES.register(
             "psychic_resist", // Our registry name
             () -> new RangedAttribute("ttrpgCraft.Psychic_Resist", 0, -100,100)
-    );
-    public static final DeferredHolder<Attribute, Attribute> POISON_RESIST = TTRPGATTRIBUTES.register(
-            "poison_resist", // Our registry name
-            () -> new RangedAttribute("ttrpgCraft.Poison_Resist", 0, -100,100)
     );
     public static final DeferredHolder<Attribute, Attribute> NECROTIC_RESIST = TTRPGATTRIBUTES.register(
             "necrotic_resist", // Our registry name
