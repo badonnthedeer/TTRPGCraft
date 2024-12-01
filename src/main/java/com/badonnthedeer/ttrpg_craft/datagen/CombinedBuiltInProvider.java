@@ -1,5 +1,6 @@
 package com.badonnthedeer.ttrpg_craft.datagen;
 
+import com.badonnthedeer.ttrpg_craft.TTRPGCraft;
 import com.badonnthedeer.ttrpg_craft.enchantment.ModEnchantments;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
@@ -81,7 +82,8 @@ public class CombinedBuiltInProvider extends DatapackBuiltinEntriesProvider {
             })
             .add(Registries.ENCHANTMENT, ModEnchantments::bootstrap);
 
-    public CombinedBuiltInProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, RegistrySetBuilder datapackEntriesBuilder, Set<String> modIds) {
-        super(output, registries, datapackEntriesBuilder, modIds);
+    public CombinedBuiltInProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+        super(output, registries, BUILDER, Set.of(TTRPGCraft.MOD_ID));
     }
+
 }

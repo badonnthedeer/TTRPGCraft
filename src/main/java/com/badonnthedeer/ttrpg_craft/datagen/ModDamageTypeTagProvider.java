@@ -1,6 +1,7 @@
 package com.badonnthedeer.ttrpg_craft.datagen;
 
 
+import com.badonnthedeer.ttrpg_craft.TTRPGCraft;
 import com.badonnthedeer.ttrpg_craft.registry.ModDamageTypeTags;
 import com.badonnthedeer.ttrpg_craft.registry.ModDamageTypes;
 import net.minecraft.core.HolderLookup;
@@ -95,7 +96,7 @@ public class ModDamageTypeTagProvider extends DamageTypeTagsProvider
 
     }
 
-    public ModDamageTypeTagProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> registries, String modId, @Nullable ExistingFileHelper existingFileHelper) {
-        super(packOutput, registries, modId, existingFileHelper);
+    public ModDamageTypeTagProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> registries, @Nullable ExistingFileHelper existingFileHelper) {
+        super(packOutput, registries, TTRPGCraft.MOD_ID, existingFileHelper);
     }
 }

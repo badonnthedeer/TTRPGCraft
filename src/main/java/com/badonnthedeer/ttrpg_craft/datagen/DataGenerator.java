@@ -27,10 +27,12 @@ public class DataGenerator {
 
         //Combined BuiltInEntriesProvider. Docs allude to sticking it directly in the gatherData function, but I like the organization Kaupenjoe provides.
         LOGGER.debug("Generating combined additions to Built-in Registries...");
-        generator.addProvider(event.includeServer(), new CombinedBuiltInProvider(packOutput, lookupProvider, CombinedBuiltInProvider.BUILDER, Set.of(TTRPGCraft.MOD_ID)));
+        CombinedBuiltInProvider CBIP = new CombinedBuiltInProvider(packOutput, lookupProvider);
+        generator.addProvider(event.includeServer(), CBIP);
 
         LOGGER.debug("Generating DamageTypeTags...");
-        generator.addProvider(event.includeServer(), new ModDamageTypeTagProvider(packOutput,  new CombinedBuiltInProvider(packOutput, lookupProvider, CombinedBuiltInProvider.BUILDER, Set.of(TTRPGCraft.MOD_ID)).getRegistryProvider(), TTRPGCraft.MOD_ID, existingFileHelper));
+        generator.addProvider(event.includeServer(), new ModDamageTypeTagProvider(packOutput, CBIP.getRegistryProvider(), existingFileHelper));
+
 
         LOGGER.debug("End datagen");
     }
