@@ -28,8 +28,7 @@ public class ModDamageTypeTagProvider extends DamageTypeTagsProvider
         this.tag(ModDamageTypeTags.IS_POISON)
                 .add(ModDamageTypes.POISON_DAMAGE);
         this.tag(ModDamageTypeTags.IS_LIGHTNING)
-                .add(ModDamageTypes.LIGHTNING_DAMAGE)
-                .addTag(DamageTypeTags.IS_LIGHTNING);
+                .add(ModDamageTypes.LIGHTNING_DAMAGE);
         this.tag(ModDamageTypeTags.IS_THUNDER)
                 .add(ModDamageTypes.THUNDER_DAMAGE,
                 DamageTypes.SONIC_BOOM);
@@ -79,13 +78,10 @@ public class ModDamageTypeTagProvider extends DamageTypeTagsProvider
 
         //neoforge compat
 
-        this.tag(Tags.DamageTypes.IS_WITHER).addTag(ModDamageTypeTags.IS_NECROTIC);
         this.tag(ModDamageTypeTags.IS_NECROTIC).addTag(Tags.DamageTypes.IS_WITHER);
 
-        this.tag(Tags.DamageTypes.IS_POISON).addTag(ModDamageTypeTags.IS_POISON);
         this.tag(ModDamageTypeTags.IS_POISON).addTag(Tags.DamageTypes.IS_POISON);
 
-        this.tag(Tags.DamageTypes.IS_PHYSICAL).addTag(ModDamageTypeTags.IS_PHYSICAL);
         this.tag(ModDamageTypeTags.IS_PHYSICAL).addTag(Tags.DamageTypes.IS_PHYSICAL);
 
     }
