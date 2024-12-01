@@ -1,5 +1,6 @@
 package com.badonnthedeer.ttrpg_craft.datagen;
 
+import com.badonnthedeer.ttrpg_craft.enchantment.ModEnchantments;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -77,7 +78,8 @@ public class CombinedBuiltInProvider extends DatapackBuiltinEntriesProvider {
                         0.1f,
                         DamageEffects.HURT,
                         DeathMessageType.DEFAULT));
-            });
+            })
+            .add(Registries.ENCHANTMENT, ModEnchantments::bootstrap);
 
     public CombinedBuiltInProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, RegistrySetBuilder datapackEntriesBuilder, Set<String> modIds) {
         super(output, registries, datapackEntriesBuilder, modIds);
