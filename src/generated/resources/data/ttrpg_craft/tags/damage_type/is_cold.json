@@ -1,5 +1,6 @@
 {
   "values": [
-    "ttrpg_craft:cold_damage"
+    "ttrpg_craft:cold_damage",
+    "minecraft:freeze"
   ]
 }

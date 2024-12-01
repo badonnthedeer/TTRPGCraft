@@ -1,7 +1,13 @@
 {
   "values": [
+    "#ttrpg_craft:is_fire",
+    "#ttrpg_craft:is_cold",
     "#ttrpg_craft:is_acid",
+    "#ttrpg_craft:is_poison",
+    "#ttrpg_craft:is_lightning",
     "#ttrpg_craft:is_thunder",
+    "#ttrpg_craft:is_force",
+    "#ttrpg_craft:is_psychic",
     "#ttrpg_craft:is_radiant",
     "#ttrpg_craft:is_necrotic"
   ]

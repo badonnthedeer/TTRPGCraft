@@ -1,5 +1,12 @@
 {
   "values": [
-    "ttrpg_craft:fire_damage"
+    "ttrpg_craft:fire_damage",
+    "minecraft:in_fire",
+    "minecraft:on_fire",
+    "minecraft:fireball",
+    "minecraft:hot_floor",
+    "minecraft:lava",
+    "minecraft:campfire",
+    "minecraft:unattributed_fireball"
   ]
 }

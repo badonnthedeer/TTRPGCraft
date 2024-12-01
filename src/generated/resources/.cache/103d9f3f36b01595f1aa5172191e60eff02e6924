@@ -1,11 +1,11 @@
-// 1.21	2024-12-01T00:02:15.3363737	Registries
+// 1.21	2024-12-01T00:43:13.760468	Registries
 3029b09e37665353408e1039ad96ae74b484e003 data/ttrpg_craft/damage_type/acid_damage.json
 7b602de8a53c1fd7123df484e809330b1e994386 data/ttrpg_craft/damage_type/cold_damage.json
 9f6cc0674e78130d05fd1c53df451027ee95ad28 data/ttrpg_craft/damage_type/fire_damage.json
 3e7360ee85bb9c5c533ca16c698322fc3ba1dc02 data/ttrpg_craft/damage_type/force_damage.json
 effaf5ffff5ae8881458eca8303fac69959c5efc data/ttrpg_craft/damage_type/lightning_damage.json
 00950780dbecc631c52ffa1b6ce23004b669cb1f data/ttrpg_craft/damage_type/necrotic_damage.json
-745613266ba91a412bcad431501891411367272e data/ttrpg_craft/damage_type/nonmagical_damage.json
+5dd165eebe34a6d30be30ab6dc0f898b4ffd440c data/ttrpg_craft/damage_type/physical_damage.json
 44ad44a67885a217e76b23bb8bd508f1d03223ab data/ttrpg_craft/damage_type/poison_damage.json
 cef7c00ed0186165464ae6feab2e98b34677203f data/ttrpg_craft/damage_type/psychic_damage.json
 b9cf66a88bf2f82405c826e1d5c27c5b14c5e25e data/ttrpg_craft/damage_type/radiant_damage.json

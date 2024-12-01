@@ -1,6 +1,9 @@
 {
   "values": [
     "ttrpg_craft:thunder_damage",
-    "minecraft:sonic_boom"
+    "minecraft:player_explosion",
+    "minecraft:explosion",
+    "minecraft:sonic_boom",
+    "minecraft:bad_respawn_point"
   ]
 }
