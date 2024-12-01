@@ -39,8 +39,8 @@ public class ModDamageTypes {
     public static final ResourceKey<DamageType> PSYCHIC_DAMAGE =
             ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(TTRPGCraft.MOD_ID, "psychic_damage"));
 
-    public static final ResourceKey<DamageType> NONMAGICAL_PHYSICAL_DAMAGE =
-            ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(TTRPGCraft.MOD_ID, "nonmagical_damage"));
+    public static final ResourceKey<DamageType> PHYSICAL_DAMAGE =
+            ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(TTRPGCraft.MOD_ID, "physical_damage"));
 
 
 
