@@ -2,6 +2,7 @@ package com.badonnthedeer.ttrpg_craft.enchantment;
 
 import com.badonnthedeer.ttrpg_craft.TTRPGCraft;
 import com.badonnthedeer.ttrpg_craft.enchantment.custom.FlametongueEnchantmentEffect;
+import com.badonnthedeer.ttrpg_craft.enchantment.custom.FrostbrandEnchantmentEffect;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
@@ -18,7 +19,7 @@ public class ModEnchantmentEffects {
             registerEnchantmentEffect("flametongue", FlametongueEnchantmentEffect.CODEC);
 
     public static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> FROSTBRAND =
-            registerEnchantmentEffect("frostbrand", FlametongueEnchantmentEffect.CODEC);
+            registerEnchantmentEffect("frostbrand", FrostbrandEnchantmentEffect.CODEC);
 
     private static Supplier<MapCodec<? extends EnchantmentEntityEffect>> registerEnchantmentEffect(String name,
                                                                                                    MapCodec<? extends EnchantmentEntityEffect> codec) {

@@ -1,7 +1,7 @@
 {
   "anvil_cost": 4,
   "description": {
-    "translate": "enchantment.ttrpg_craft.firebrand"
+    "translate": "enchantment.ttrpg_craft.frostbrand"
   },
   "effects": {
     "minecraft:attributes": [
@@ -20,7 +20,7 @@
       {
         "affected": "victim",
         "effect": {
-          "type": "ttrpg_craft:firebrand",
+          "type": "ttrpg_craft:frostbrand",
           "damage": {
             "type": "minecraft:linear",
             "base": 4.0,

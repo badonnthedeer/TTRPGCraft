@@ -20,7 +20,7 @@
       {
         "affected": "victim",
         "effect": {
-          "type": "ttrpg_craft:frostbrand",
+          "type": "ttrpg_craft:flametongue",
           "damage": {
             "type": "minecraft:linear",
             "base": 4.0,

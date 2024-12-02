@@ -1,4 +1,4 @@
-// 1.21	2024-12-01T16:47:10.7223565	Registries
+// 1.21	2024-12-01T20:38:41.9970136	Registries
 3029b09e37665353408e1039ad96ae74b484e003 data/ttrpg_craft/damage_type/acid_damage.json
 7b602de8a53c1fd7123df484e809330b1e994386 data/ttrpg_craft/damage_type/cold_damage.json
 9f6cc0674e78130d05fd1c53df451027ee95ad28 data/ttrpg_craft/damage_type/fire_damage.json
@@ -10,4 +10,5 @@ effaf5ffff5ae8881458eca8303fac69959c5efc data/ttrpg_craft/damage_type/lightning_
 cef7c00ed0186165464ae6feab2e98b34677203f data/ttrpg_craft/damage_type/psychic_damage.json
 b9cf66a88bf2f82405c826e1d5c27c5b14c5e25e data/ttrpg_craft/damage_type/radiant_damage.json
 08ad94d86417c5ffa0f636a8a8c21d18df4e3300 data/ttrpg_craft/damage_type/thunder_damage.json
-c17ff3fb8dd9a0122d38013014dabd27af7c0095 data/ttrpg_craft/enchantment/firebrand.json
+7d44ad5fa06a727905e20c2c8778a29168aa6835 data/ttrpg_craft/enchantment/flametongue.json
+abab42d731bc6f2a414c64e08f5d44ff8a33a777 data/ttrpg_craft/enchantment/frostbrand.json
