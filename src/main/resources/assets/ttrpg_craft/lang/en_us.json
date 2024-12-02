@@ -1,0 +1,23 @@
+{
+  "ttrpg_craft.strength": "Strength",
+  "ttrpg_craft.dexterity": "Dexterity",
+  "ttrpg_craft.constitution": "Constitution",
+  "ttrpg_craft.intelligence": "Intelligence",
+  "ttrpg_craft.wisdom": "Wisdom",
+  "ttrpg_craft.charisma": "Charisma",
+  "ttrpg_craft.crit_chance": "% Critical Chance",
+  "ttrpg_craft.magical_unarmed_attacks": "Magical Unarmed Attacks",
+  "ttrpg_craft.fire_resist": "% Fire Resistance",
+  "ttrpg_craft.cold_resist": "% Cold Resistance",
+  "ttrpg_craft.acid_resist": "% Acid Resistance",
+  "ttrpg_craft.poison_resist": "% Poison Resistance",
+  "ttrpg_craft.lightning_resist": "% Lightning Resistance",
+  "ttrpg_craft.thunder_resist": "% Thunder Resistance",
+  "ttrpg_craft.force_resist": "% Force Resistance",
+  "ttrpg_craft.psychic_resist": "% Psychic Resistance",
+  "ttrpg_craft.necrotic_resist": "% Necrotic Resistance",
+  "ttrpg_craft.radiant_resist": "% Radiant Resistance",
+  "ttrpg_craft.physical_resist": "% Physical Resistance",
+
+  "enchantment.ttrpg_craft.firebrand": "Firebrand"
+}
