@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "ttrpg_craft:firebrand"
+    "ttrpg_craft:flametongue",
+    "ttrpg_craft:frostbrand"
   ]
 }
