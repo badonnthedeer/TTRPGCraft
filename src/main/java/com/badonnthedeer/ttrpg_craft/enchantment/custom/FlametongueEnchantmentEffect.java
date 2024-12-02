@@ -12,12 +12,12 @@ import net.minecraft.world.item.enchantment.LevelBasedValue;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
 import net.minecraft.world.phys.Vec3;
 
-public record FirebrandEnchantmentEffect(LevelBasedValue damage) implements EnchantmentEntityEffect {
-    public static final MapCodec<FirebrandEnchantmentEffect> CODEC = RecordCodecBuilder.mapCodec(instance ->
-            instance.group(LevelBasedValue.CODEC.fieldOf("damage").forGetter(FirebrandEnchantmentEffect::damage))
-                    .apply(instance, FirebrandEnchantmentEffect::new));
+public record FlametongueEnchantmentEffect(LevelBasedValue damage) implements EnchantmentEntityEffect {
+    public static final MapCodec<FlametongueEnchantmentEffect> CODEC = RecordCodecBuilder.mapCodec(instance ->
+            instance.group(LevelBasedValue.CODEC.fieldOf("damage").forGetter(FlametongueEnchantmentEffect::damage))
+                    .apply(instance, FlametongueEnchantmentEffect::new));
 
-    public FirebrandEnchantmentEffect(LevelBasedValue damage){
+    public FlametongueEnchantmentEffect(LevelBasedValue damage){
         this.damage = damage;
     }
 

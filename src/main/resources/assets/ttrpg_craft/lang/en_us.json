@@ -19,5 +19,6 @@
   "ttrpg_craft.radiant_resist": "% Radiant Resistance",
   "ttrpg_craft.physical_resist": "% Physical Resistance",
 
-  "enchantment.ttrpg_craft.firebrand": "Firebrand"
+  "enchantment.ttrpg_craft.flametongue": "Firetongue",
+  "enchantment.ttrpg_craft.frostbrand": "Frostbrand"
 }

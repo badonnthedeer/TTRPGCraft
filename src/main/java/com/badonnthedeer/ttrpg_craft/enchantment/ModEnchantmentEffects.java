@@ -1,7 +1,7 @@
 package com.badonnthedeer.ttrpg_craft.enchantment;
 
 import com.badonnthedeer.ttrpg_craft.TTRPGCraft;
-import com.badonnthedeer.ttrpg_craft.enchantment.custom.FirebrandEnchantmentEffect;
+import com.badonnthedeer.ttrpg_craft.enchantment.custom.FlametongueEnchantmentEffect;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
@@ -14,8 +14,11 @@ public class ModEnchantmentEffects {
     public static final DeferredRegister<MapCodec<? extends EnchantmentEntityEffect>> ENTITY_ENCHANTMENT_EFFECTS =
             DeferredRegister.create(Registries.ENCHANTMENT_ENTITY_EFFECT_TYPE, TTRPGCraft.MOD_ID);
 
-    public static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> FIREBRAND =
-            registerEnchantmentEffect("firebrand", FirebrandEnchantmentEffect.CODEC);
+    public static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> FLAMETONGUE =
+            registerEnchantmentEffect("flametongue", FlametongueEnchantmentEffect.CODEC);
+
+    public static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> FROSTBRAND =
+            registerEnchantmentEffect("frostbrand", FlametongueEnchantmentEffect.CODEC);
 
     private static Supplier<MapCodec<? extends EnchantmentEntityEffect>> registerEnchantmentEffect(String name,
                                                                                                    MapCodec<? extends EnchantmentEntityEffect> codec) {
