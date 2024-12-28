@@ -52,7 +52,23 @@ public class ModEvents
             maxDmg = ((maxDmg * strScale) + ttMod);
             finalDmg = RAND.nextInt(minDmg, (int) (Math.round(maxDmg) + 1));
             float critRoll = RAND.nextInt(1, (100 + 1));
-            boolean isCrit = critRoll <= critAttr.getValue() && strScale == 1.0f;
+            boolean isCrit = false;
+
+            if (target instanceof LivingEntity targetEntity)
+            {
+                if(targetEntity.getAttribute(TTRPGAttributes.CRIT_VULNERABLE) != null && targetEntity.getAttribute(TTRPGAttributes.CRIT_VULNERABLE).getValue() == 1)
+                {
+                    isCrit = true;
+                }
+                else if(targetEntity.getAttribute(TTRPGAttributes.CRIT_VULNERABLE) != null && targetEntity.getAttribute(TTRPGAttributes.CRIT_VULNERABLE).getValue() == -1)
+                {
+                    isCrit = false;
+                }
+                else
+                {
+                    isCrit = critRoll <= critAttr.getValue() && strScale == 1.0f;
+                }
+            };
 
             if (isCrit) {
                 finalDmg += RAND.nextInt(minDmg, (int) (Math.round(maxDmg) + 1));

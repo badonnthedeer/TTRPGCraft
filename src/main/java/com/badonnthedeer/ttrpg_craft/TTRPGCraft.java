@@ -4,6 +4,7 @@ import com.badonnthedeer.ttrpg_craft.client.gui.CharacterSheetScreen;
 import com.badonnthedeer.ttrpg_craft.client.gui.GuiEventHandler;
 import com.badonnthedeer.ttrpg_craft.client.gui.ModMenuTypes;
 import com.badonnthedeer.ttrpg_craft.common.entity.TTRPGAttributes;
+import com.badonnthedeer.ttrpg_craft.effect.ModEffects;
 import com.badonnthedeer.ttrpg_craft.enchantment.ModEnchantmentEffects;
 import com.mojang.logging.LogUtils;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -51,6 +52,7 @@ public class TTRPGCraft
         TTRPGAttributes.register(modEventBus);
         ModMenuTypes.register(modEventBus);
         ModEnchantmentEffects.register(modEventBus);
+        ModEffects.register(modEventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)

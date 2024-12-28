@@ -42,6 +42,10 @@ public class TTRPGAttributes {
             "crit_chance", // Our registry name
             () -> new RangedAttribute(MOD_ID + ".crit_chance", 5, 5,100)
     );
+    public static final DeferredHolder<Attribute, Attribute> CRIT_VULNERABLE = TTRPGATTRIBUTES.register(
+            "crit_vulnerable", // Our registry name
+            () -> new RangedAttribute(MOD_ID + ".crit_vulnerable", 0, -1,1)
+    );
     public static final DeferredHolder<Attribute, Attribute> MAGICAL_UNARMED_ATTACKS = TTRPGATTRIBUTES.register(
             "magical_unarmed_attacks", // Our registry name
             () -> new RangedAttribute(MOD_ID + ".magical_unarmed_attacks", 0, 0, 1)
