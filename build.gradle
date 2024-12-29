@@ -3,7 +3,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.neoforged.gradle.userdev' version '7.0.105'
+    id 'net.neoforged.gradle.userdev' version '7.0.174'
 }
 
 version = mod_version
@@ -12,6 +12,23 @@ group = mod_group_id
 repositories {
     mavenLocal()
     maven { url = 'https://cursemaven.com' }
+    maven {
+        url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+    }
+    //PlayerAnimator for iron's
+    maven {
+        name = "KosmX's maven"
+        url = 'https://maven.kosmx.dev/'
+    }
+    //curios continuation
+    maven {
+        name = "OctoStudios"
+        url = uri("https://maven.octo-studios.com/releases")
+    }
+    maven {
+        name = "Iron's Maven - Release"
+        url = "https://code.redspace.io/releases"
+    }
 }
 
 base {
@@ -83,6 +100,18 @@ dependencies {
     // And its provides the option to then use net.minecraft as the group, and one of; client, server or joined as the module name, plus the game version as version.
     // For all intends and purposes: You can treat this dependency as if it is a normal library you would use.
     implementation "net.neoforged:neoforge:${neo_version}"
+
+    implementation "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
+
+    //PlayerAnimator for Irons
+    implementation("dev.kosmx.player-anim:player-animation-lib-forge:${player_animator_version}")
+
+    //curios continuation
+    implementation "top.theillusivec4.curios:curios-neoforge:${curios_continuation_version}"
+
+    compileOnly "io.redspace:irons_spellbooks:${irons_spells_version}:api"
+    runtimeOnly "io.redspace:irons_spellbooks:${irons_spells_version}"
+
 
     // Example mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
