@@ -3,7 +3,8 @@
   "package": "com.badonnthedeer.ttrpg_craft.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "PlayerMixin"
+    "PlayerMixin",
+    "LivingEntityMixin"
   ],
   "client": [
 

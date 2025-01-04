@@ -2,8 +2,10 @@ package com.badonnthedeer.ttrpg_craft.event;
 
 import com.badonnthedeer.ttrpg_craft.TTRPGCraft;
 import com.badonnthedeer.ttrpg_craft.common.entity.TTRPGAttributes;
+import com.badonnthedeer.ttrpg_craft.effect.ModEffects;
 import com.badonnthedeer.ttrpg_craft.registry.ModDamageTypeTags;
 import com.badonnthedeer.ttrpg_craft.util.TTRPGAttribute;
+import com.llamalad7.mixinextras.sugar.Cancellable;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -18,6 +20,8 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.damagesource.DamageContainer;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
 import java.util.Objects;
 
@@ -163,6 +167,42 @@ public class ModEvents
         if (event.getSource().getEntity() instanceof Player player)
         {
             player.sendSystemMessage(Component.literal(String.format("%.2f -> %s %.2f", event.getOriginalDamage(), event.getSource().type().msgId(), event.getNewDamage())));
+        }
+    }
+
+    @SubscribeEvent
+    public static void PlayerEntityInteract(PlayerInteractEvent.EntityInteract event)
+    {
+        if(event.getEntity().hasEffect(ModEffects.INCAPACITATED_EFFECT))
+        {
+            event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public static void LeftClickBlock(PlayerInteractEvent.LeftClickBlock event)
+    {
+        if(event.getEntity().hasEffect(ModEffects.INCAPACITATED_EFFECT))
+        {
+            event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public static void RightClickBlock(PlayerInteractEvent.RightClickBlock event)
+    {
+        if(event.getEntity().hasEffect(ModEffects.INCAPACITATED_EFFECT))
+        {
+            event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public static void PlayerAttack(AttackEntityEvent event)
+    {
+        if(event.getEntity().hasEffect(ModEffects.INCAPACITATED_EFFECT))
+        {
+            event.setCanceled(true);
         }
     }
 }
