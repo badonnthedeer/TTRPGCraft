@@ -1,15 +1,18 @@
 package com.badonnthedeer.ttrpg_craft.event;
 
 import com.badonnthedeer.ttrpg_craft.TTRPGCraft;
+import com.badonnthedeer.ttrpg_craft.client.ClientPayloadHandler;
 import com.badonnthedeer.ttrpg_craft.common.entity.TTRPGAttributes;
 import com.badonnthedeer.ttrpg_craft.effect.ModEffects;
+import com.badonnthedeer.ttrpg_craft.network.IsImmobileData;
+import com.badonnthedeer.ttrpg_craft.network.ServerPayloadHandler;
 import com.badonnthedeer.ttrpg_craft.registry.ModDamageTypeTags;
 import com.badonnthedeer.ttrpg_craft.util.TTRPGAttribute;
-import com.llamalad7.mixinextras.sugar.Cancellable;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -20,8 +23,13 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.damagesource.DamageContainer;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.handling.DirectionalPayloadHandler;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 import java.util.Objects;
 
@@ -169,6 +177,53 @@ public class ModEvents
             player.sendSystemMessage(Component.literal(String.format("%.2f -> %s %.2f", event.getOriginalDamage(), event.getSource().type().msgId(), event.getNewDamage())));
         }
     }
+
+    @SubscribeEvent
+    public static void onEffectRemoved(MobEffectEvent.Remove event)
+    {
+        MobEffectInstance instance = event.getEffectInstance();
+        if (instance == null) {
+            return;
+        }
+
+        // Check if it's YOUR incapacitated effect being removed
+//        if (instance.getEffect() == ModEffects.INCAPACITATED_EFFECT) {
+//            LivingEntity entity = event.getEntity();
+//            if (!entity.level().isClientSide) {
+//                // On the SERVER, send packet telling clients “It’s gone now”
+//                // Suppose the server code wants to tell everyone that "entity X is now incapacitated."
+//                // We create the payload with the entity's ID and the new boolean
+//                IsImmobileData payload = new IsImmobileData(event.getEntity().getId(), false);
+//
+//                // Then send to all players tracking that entity
+//                PacketDistributor.sendToPlayersTrackingEntity(event.getEntity(), payload);
+//            }
+//        }
+    }
+
+    @SubscribeEvent
+    public static void onEffectExpired(MobEffectEvent.Expired event)
+    {
+        MobEffectInstance instance = event.getEffectInstance();
+        if (instance == null) {
+            return;
+        }
+
+        // Check if it's YOUR incapacitated effect being removed
+//        if (instance.getEffect() == ModEffects.INCAPACITATED_EFFECT) {
+//            LivingEntity entity = event.getEntity();
+//            if (!entity.level().isClientSide) {
+//                // On the SERVER, send packet telling clients “It’s gone now”
+//                // Suppose the server code wants to tell everyone that "entity X is now incapacitated."
+//                // We create the payload with the entity's ID and the new boolean
+//                IsImmobileData payload = new IsImmobileData(event.getEntity().getId(), false);
+//
+//                // Then send to all players tracking that entity
+//                PacketDistributor.sendToPlayersTrackingEntity(event.getEntity(), payload);
+//            }
+//        }
+    }
+
 
     @SubscribeEvent
     public static void PlayerEntityInteract(PlayerInteractEvent.EntityInteract event)

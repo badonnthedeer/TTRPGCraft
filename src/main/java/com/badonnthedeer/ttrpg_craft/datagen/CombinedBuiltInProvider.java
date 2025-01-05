@@ -11,6 +11,7 @@ import net.minecraft.world.damagesource.DamageScaling;
 import net.minecraft.world.damagesource.DamageEffects;
 import net.minecraft.world.damagesource.DeathMessageType;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
+import net.minecraft.network.codec.IdDispatchCodec;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;

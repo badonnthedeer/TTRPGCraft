@@ -44,7 +44,7 @@ public class IncapacitatedEffect extends MobEffect {
         {
             if (entity.hasEffect(ModEffects.INCAPACITATED_EFFECT) && entity.getEffect(ModEffects.INCAPACITATED_EFFECT).getDuration() <= 2) {
                 if (entity.getPose() == Pose.SLEEPING) {
-                    entity.setPose(null);
+                    entity.setPose(Pose.STANDING);
                 }
             } else
             {
