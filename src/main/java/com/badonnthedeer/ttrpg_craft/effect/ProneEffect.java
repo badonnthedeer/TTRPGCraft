@@ -73,7 +73,7 @@ public class ProneEffect extends MobEffect {
         ImmutableMultimap.Builder<Holder<Attribute>, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.MOVEMENT_SPEED, speedModifier);
         builder.put(Attributes.ATTACK_DAMAGE, damageModifier);
-        builder.put(TTRPGAttributes.CRIT_VULNERABLE, critVulnerableModifier);
+        builder.put(TTRPGAttributes.MELEE_CRIT_VULNERABLE, critVulnerableModifier);
 
         attributeMap.addTransientAttributeModifiers(builder.build());
     }
@@ -104,7 +104,7 @@ public class ProneEffect extends MobEffect {
         ImmutableMultimap.Builder<Holder<Attribute>, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.MOVEMENT_SPEED, speedModifier);
         builder.put(Attributes.ATTACK_DAMAGE, damageModifier);
-        builder.put(TTRPGAttributes.CRIT_VULNERABLE, critVulnerableModifier);
+        builder.put(TTRPGAttributes.MELEE_CRIT_VULNERABLE, critVulnerableModifier);
 
         attributeMap.removeAttributeModifiers(builder.build());
     }

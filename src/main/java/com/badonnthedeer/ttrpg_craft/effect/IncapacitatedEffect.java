@@ -53,7 +53,7 @@ public class IncapacitatedEffect extends MobEffect {
         );
 
         ImmutableMultimap.Builder<Holder<Attribute>, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(TTRPGAttributes.CRIT_VULNERABLE, critVulnerableModifier);
+        builder.put(TTRPGAttributes.MELEE_CRIT_VULNERABLE, critVulnerableModifier);
 
         attributeMap.addTransientAttributeModifiers(builder.build());
     }
@@ -70,7 +70,7 @@ public class IncapacitatedEffect extends MobEffect {
         );
 
         ImmutableMultimap.Builder<Holder<Attribute>, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(TTRPGAttributes.CRIT_VULNERABLE, critVulnerableModifier);
+        builder.put(TTRPGAttributes.MELEE_CRIT_VULNERABLE, critVulnerableModifier);
 
         attributeMap.removeAttributeModifiers(builder.build());
 

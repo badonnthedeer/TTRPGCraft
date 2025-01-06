@@ -72,7 +72,7 @@ public class ModEvents
                 boolean isCrit = false;
 
                 if (target instanceof LivingEntity targetEntity) {
-                    if (targetEntity.getAttribute(TTRPGAttributes.MELEE_CRIT_VULNERABLE) != null && targetEntity.getAttribute(TTRPGAttributes.MELEE_CRIT_VULNERABLE).getValue() == 1) {
+                    if (targetEntity.getAttribute(TTRPGAttributes.MELEE_CRIT_VULNERABLE) != null && targetEntity.getAttribute(TTRPGAttributes.MELEE_CRIT_VULNERABLE).getValue() == 1 && source.distanceTo(targetEntity) < 1.5) {
                         isCrit = true;
                     } else if (targetEntity.getAttribute(TTRPGAttributes.MELEE_CRIT_VULNERABLE) != null && targetEntity.getAttribute(TTRPGAttributes.MELEE_CRIT_VULNERABLE).getValue() == -1) {
                         isCrit = false;

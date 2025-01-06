@@ -2,7 +2,6 @@ package com.badonnthedeer.ttrpg_craft.common.entity;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -42,9 +41,9 @@ public class TTRPGAttributes {
             "crit_chance", // Our registry name
             () -> new RangedAttribute(MOD_ID + ".crit_chance", 5, 5,100)
     );
-    public static final DeferredHolder<Attribute, Attribute> CRIT_VULNERABLE = TTRPGATTRIBUTES.register(
-            "crit_vulnerable", // Our registry name
-            () -> new RangedAttribute(MOD_ID + ".crit_vulnerable", 0, -1,1)
+    public static final DeferredHolder<Attribute, Attribute> MELEE_CRIT_VULNERABLE = TTRPGATTRIBUTES.register(
+            "melee_crit_vulnerable", // Our registry name
+            () -> new RangedAttribute(MOD_ID + ".melee_crit_vulnerable", 0, -1,1)
     );
     public static final DeferredHolder<Attribute, Attribute> MAGICAL_UNARMED_ATTACKS = TTRPGATTRIBUTES.register(
             "magical_unarmed_attacks", // Our registry name
