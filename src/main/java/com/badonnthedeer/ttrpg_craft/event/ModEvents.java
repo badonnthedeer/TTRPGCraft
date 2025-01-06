@@ -4,23 +4,28 @@ import com.badonnthedeer.ttrpg_craft.TTRPGCraft;
 import com.badonnthedeer.ttrpg_craft.client.ClientPayloadHandler;
 import com.badonnthedeer.ttrpg_craft.common.entity.TTRPGAttributes;
 import com.badonnthedeer.ttrpg_craft.effect.ModEffects;
-import com.badonnthedeer.ttrpg_craft.network.IsImmobileData;
-import com.badonnthedeer.ttrpg_craft.network.ServerPayloadHandler;
+import com.badonnthedeer.ttrpg_craft.network.ClearForcedPoseData;
 import com.badonnthedeer.ttrpg_craft.registry.ModDamageTypeTags;
 import com.badonnthedeer.ttrpg_craft.util.TTRPGAttribute;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.damagesource.DamageContainer;
+import net.neoforged.neoforge.event.PlayLevelSoundEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
@@ -172,10 +177,24 @@ public class ModEvents
     @SubscribeEvent
     public static void PostDamage(LivingDamageEvent.Post event)
     {
+        if (event.getEntity() instanceof LivingEntity livingEntity)
+        {
+            if (livingEntity.hasEffect(ModEffects.UNCONSCIOUS_EFFECT) && livingEntity.getHealth() > 0)
+            {
+                //in the case of a sleep spell, for example. Dying creatures will not be picked up by damage.
+                livingEntity.removeEffect(ModEffects.UNCONSCIOUS_EFFECT);
+            }
+        }
         if (event.getSource().getEntity() instanceof Player player)
         {
             player.sendSystemMessage(Component.literal(String.format("%.2f -> %s %.2f", event.getOriginalDamage(), event.getSource().type().msgId(), event.getNewDamage())));
         }
+    }
+
+    @SubscribeEvent
+    public static void onSoundPlay(PlayLevelSoundEvent event)
+    {
+        //do silence effect here, eventually
     }
 
     @SubscribeEvent
@@ -186,19 +205,7 @@ public class ModEvents
             return;
         }
 
-        // Check if it's YOUR incapacitated effect being removed
-//        if (instance.getEffect() == ModEffects.INCAPACITATED_EFFECT) {
-//            LivingEntity entity = event.getEntity();
-//            if (!entity.level().isClientSide) {
-//                // On the SERVER, send packet telling clients “It’s gone now”
-//                // Suppose the server code wants to tell everyone that "entity X is now incapacitated."
-//                // We create the payload with the entity's ID and the new boolean
-//                IsImmobileData payload = new IsImmobileData(event.getEntity().getId(), false);
-//
-//                // Then send to all players tracking that entity
-//                PacketDistributor.sendToPlayersTrackingEntity(event.getEntity(), payload);
-//            }
-//        }
+        HandleEffectRemoval(event.getEntity(), instance);
     }
 
     @SubscribeEvent
@@ -209,19 +216,7 @@ public class ModEvents
             return;
         }
 
-        // Check if it's YOUR incapacitated effect being removed
-//        if (instance.getEffect() == ModEffects.INCAPACITATED_EFFECT) {
-//            LivingEntity entity = event.getEntity();
-//            if (!entity.level().isClientSide) {
-//                // On the SERVER, send packet telling clients “It’s gone now”
-//                // Suppose the server code wants to tell everyone that "entity X is now incapacitated."
-//                // We create the payload with the entity's ID and the new boolean
-//                IsImmobileData payload = new IsImmobileData(event.getEntity().getId(), false);
-//
-//                // Then send to all players tracking that entity
-//                PacketDistributor.sendToPlayersTrackingEntity(event.getEntity(), payload);
-//            }
-//        }
+        HandleEffectRemoval(event.getEntity(), instance);
     }
 
 
@@ -258,6 +253,51 @@ public class ModEvents
         if(event.getEntity().hasEffect(ModEffects.INCAPACITATED_EFFECT))
         {
             event.setCanceled(true);
+        }
+    }
+
+    public static void HandleEffectRemoval(LivingEntity entity, MobEffectInstance mobEffectInstance)
+    {
+        if (mobEffectInstance.getEffect().value() == ModEffects.PRONE_EFFECT.value()) {
+            if (entity instanceof ServerPlayer player)
+            {
+                player.setForcedPose(null);
+                if (!player.level().isClientSide) {
+                    // On the SERVER, send packet telling clients “It’s gone now”
+                    // Suppose the server code wants to tell everyone that "entity X is now up."
+                    // We create the payload with the entity's ID and the new boolean
+                    ClearForcedPoseData payload = new ClearForcedPoseData(player.getId(), true);
+
+                    // Then send to all players (and self) tracking that entity
+                    PacketDistributor.sendToPlayersTrackingEntityAndSelf(entity, payload);
+                }
+            }
+            else
+            {
+                entity.setPose(Pose.STANDING);
+            }
+        }
+        if (mobEffectInstance.getEffect().value() == ModEffects.UNCONSCIOUS_EFFECT.value()) {
+            if(entity.hasEffect(ModEffects.INCAPACITATED_EFFECT)){
+                entity.removeEffect(ModEffects.INCAPACITATED_EFFECT);
+            }
+            if(entity.hasEffect(ModEffects.PRONE_EFFECT)){
+                entity.removeEffect(ModEffects.PRONE_EFFECT);
+            }
+            if(entity.hasEffect(ModEffects.DEAFENED_EFFECT)){
+                entity.removeEffect(ModEffects.DEAFENED_EFFECT);
+            }
+            if(entity.hasEffect(MobEffects.BLINDNESS)){
+                entity.removeEffect(MobEffects.BLINDNESS);
+            }
+        }
+        if (mobEffectInstance.getEffect().value() == ModEffects.DEAFENED_EFFECT.value())
+        {
+            float masterVolumeInOptions = Minecraft.getInstance().options.getSoundSourceVolume(SoundSource.MASTER);
+            if (entity instanceof Player player)
+            {
+                Minecraft.getInstance().getSoundManager().updateSourceVolume(SoundSource.MASTER, masterVolumeInOptions);
+            }
         }
     }
 }

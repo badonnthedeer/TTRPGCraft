@@ -27,6 +27,13 @@ public final class NetworkRegistration {
                         ServerPayloadHandler::handleIsImmobileOnMain   // What to do on the server
                 )
         );
-        // ...register more payloads
+        registrar.playBidirectional(
+                ClearForcedPoseData.TYPE,
+                ClearForcedPoseData.STREAM_CODEC,
+                new DirectionalPayloadHandler<>(
+                        ClientPayloadHandler::handleClearForcedPoseOnMain,
+                        ServerPayloadHandler::handleClearForcedPoseOnMain
+                )
+        );
     }
 }

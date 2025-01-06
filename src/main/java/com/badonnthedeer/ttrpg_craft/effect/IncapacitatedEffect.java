@@ -4,16 +4,15 @@ import com.badonnthedeer.ttrpg_craft.TTRPGCraft;
 import com.badonnthedeer.ttrpg_craft.common.entity.TTRPGAttributes;
 import com.google.common.collect.ImmutableMultimap;
 import net.minecraft.core.Holder;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 
 public class IncapacitatedEffect extends MobEffect {
@@ -29,27 +28,15 @@ public class IncapacitatedEffect extends MobEffect {
     @Override
     public boolean applyEffectTick(LivingEntity entity, int amplifier) {
         if (entity instanceof Player player) {
-            // If effect about to expire, clear forced pose
-            if (player.hasEffect(ModEffects.INCAPACITATED_EFFECT) && player.getEffect(ModEffects.INCAPACITATED_EFFECT).getDuration() <= 2) {
-                if (player.getForcedPose() == Pose.SLEEPING) {
-                    player.setForcedPose(null);
+            // If effect about to expire, removePose forced pose
+            if (player.hasEffect(ModEffects.INCAPACITATED_EFFECT)) {
+                if (player.getForcedPose() == null) {
+                    player.setForcedPose(Pose.SLEEPING);
                 }
-            } else
-            {
-                // Otherwise, keep it forced
-                player.setForcedPose(Pose.SLEEPING);
-            }
-        }
-        else
-        {
-            if (entity.hasEffect(ModEffects.INCAPACITATED_EFFECT) && entity.getEffect(ModEffects.INCAPACITATED_EFFECT).getDuration() <= 2) {
-                if (entity.getPose() == Pose.SLEEPING) {
-                    entity.setPose(Pose.STANDING);
+            } else {
+                if (entity.hasEffect(ModEffects.INCAPACITATED_EFFECT)) {
+                    entity.setPose(Pose.SLEEPING);
                 }
-            } else
-            {
-                // Otherwise, keep it forced
-                entity.setPose(Pose.SLEEPING);
             }
         }
         return true;
