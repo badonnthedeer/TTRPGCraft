@@ -10,6 +10,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
@@ -32,30 +33,30 @@ public class UnconsciousEffect extends MobEffect {
     public boolean applyEffectTick(LivingEntity entity, int amplifier) {
         if (!entity.hasEffect(ModEffects.INCAPACITATED_EFFECT))
         {
-            entity.addEffect(new MobEffectInstance(ModEffects.INCAPACITATED_EFFECT, Integer.MAX_VALUE, 1, false, false,true));
+            entity.addEffect(new MobEffectInstance(ModEffects.INCAPACITATED_EFFECT, Integer.MAX_VALUE, 0, false, false,true));
         }
         if (!entity.hasEffect(ModEffects.PRONE_EFFECT))
         {
-            entity.addEffect(new MobEffectInstance(ModEffects.PRONE_EFFECT, Integer.MAX_VALUE, 1, false, false,false));
+            entity.addEffect(new MobEffectInstance(ModEffects.PRONE_EFFECT, Integer.MAX_VALUE, 0, false, false,false));
         }
         if (!entity.hasEffect(ModEffects.DEAFENED_EFFECT))
         {
-            entity.addEffect(new MobEffectInstance(ModEffects.DEAFENED_EFFECT, Integer.MAX_VALUE, 1, false, false,false));
+            entity.addEffect(new MobEffectInstance(ModEffects.DEAFENED_EFFECT, Integer.MAX_VALUE, 0, false, false,false));
         }
         if (!entity.hasEffect(MobEffects.BLINDNESS))
         {
-            entity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, Integer.MAX_VALUE, 1, false, false,false));
+            entity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, Integer.MAX_VALUE, 0, false, false,false));
         }
         if(entity.getMainHandItem() != ItemStack.EMPTY || entity.getOffhandItem() != ItemStack.EMPTY){
             if(entity instanceof Player player){
                 if (player.getMainHandItem() != ItemStack.EMPTY)
                 {
                     player.drop(player.getMainHandItem(), true);
-                    player.setItemSlot(player.getMainHandItem().getEquipmentSlot(), ItemStack.EMPTY);
+                    player.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
                 }
                 if (player.getOffhandItem() != ItemStack.EMPTY) {
                     player.drop(player.getOffhandItem(), true);
-                    player.setItemSlot(player.getOffhandItem().getEquipmentSlot(), ItemStack.EMPTY);
+                    player.setItemSlot(EquipmentSlot.OFFHAND, ItemStack.EMPTY);
                 }
             }
             //if you let other entities drop their items, it seems ripe for exploitation. See skeleton arrows not being pickupable.
