@@ -27,18 +27,6 @@ public class IncapacitatedEffect extends MobEffect {
 
     @Override
     public boolean applyEffectTick(LivingEntity entity, int amplifier) {
-        if (entity instanceof Player player) {
-            // If effect about to expire, removePose forced pose
-            if (player.hasEffect(ModEffects.INCAPACITATED_EFFECT)) {
-                if (player.getForcedPose() == null) {
-                    player.setForcedPose(Pose.SLEEPING);
-                }
-            } else {
-                if (entity.hasEffect(ModEffects.INCAPACITATED_EFFECT)) {
-                    entity.setPose(Pose.SLEEPING);
-                }
-            }
-        }
         return true;
     }
 
