@@ -25,7 +25,7 @@ public class ServerPayloadHandler {
                 if (!data.isImmobile()) {
                     living.removeEffect(ModEffects.INCAPACITATED_EFFECT);
                 } else {
-                    living.addEffect(new MobEffectInstance(ModEffects.INCAPACITATED_EFFECT, 600, 0));
+                    living.addEffect(new MobEffectInstance(ModEffects.INCAPACITATED_EFFECT, 1, 0));
                 }
             }
         }
