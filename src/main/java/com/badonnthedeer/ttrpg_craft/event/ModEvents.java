@@ -29,6 +29,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.damagesource.DamageContainer;
 import net.neoforged.neoforge.event.PlayLevelSoundEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
@@ -177,6 +178,16 @@ public class ModEvents
         if (event.getSource().getEntity() instanceof Player player)
         {
             player.sendSystemMessage(Component.literal(String.format("%.2f -> %s %.2f", event.getOriginalDamage(), event.getSource().type().msgId(), event.getNewDamage())));
+        }
+    }
+
+    @SubscribeEvent
+    public static void onEntityDeath(LivingDeathEvent event)
+    {
+        if(event.getEntity() instanceof Player player){
+            player.setHealth(.01f);
+            player.addEffect(new MobEffectInstance(ModEffects.UNCONSCIOUS_EFFECT, Integer.MAX_VALUE, 1, false, false, true));
+            event.setCanceled(true);
         }
     }
 
