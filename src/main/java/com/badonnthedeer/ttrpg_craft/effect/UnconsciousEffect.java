@@ -51,9 +51,11 @@ public class UnconsciousEffect extends MobEffect {
                 if (player.getMainHandItem() != ItemStack.EMPTY)
                 {
                     player.drop(player.getMainHandItem(), true);
+                    player.setItemSlot(player.getMainHandItem().getEquipmentSlot(), ItemStack.EMPTY);
                 }
                 if (player.getOffhandItem() != ItemStack.EMPTY) {
                     player.drop(player.getOffhandItem(), true);
+                    player.setItemSlot(player.getOffhandItem().getEquipmentSlot(), ItemStack.EMPTY);
                 }
             }
             //if you let other entities drop their items, it seems ripe for exploitation. See skeleton arrows not being pickupable.
@@ -93,16 +95,6 @@ public class UnconsciousEffect extends MobEffect {
 
         attributeMap.removeAttributeModifiers(builder.build());
 
-    }
-
-
-
-    public static boolean isIncapacitated(LivingEntity livingEntity) {
-        if(livingEntity instanceof Player player && (player.isCreative() || player.isSpectator())) {
-            return false;
-        }
-
-        return livingEntity.hasEffect(ModEffects.INCAPACITATED_EFFECT);
     }
 
 }

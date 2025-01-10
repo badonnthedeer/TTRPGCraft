@@ -168,7 +168,7 @@ public class ModEvents
     {
         if (event.getEntity() instanceof LivingEntity livingEntity)
         {
-            if (livingEntity.hasEffect(ModEffects.UNCONSCIOUS_EFFECT) && livingEntity.getHealth() > 0)
+            if (livingEntity.hasEffect(ModEffects.UNCONSCIOUS_EFFECT) && livingEntity.getHealth() > .01f)
             {
                 //in the case of a sleep spell, for example. Dying creatures will not be picked up by damage.
                 livingEntity.removeEffect(ModEffects.UNCONSCIOUS_EFFECT);
