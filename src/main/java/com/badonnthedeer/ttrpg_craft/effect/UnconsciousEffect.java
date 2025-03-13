@@ -18,6 +18,9 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
+import static com.badonnthedeer.ttrpg_craft.attachment.TTRPGAttachments.DEATH_SAVE_FAILURES;
+import static com.badonnthedeer.ttrpg_craft.attachment.TTRPGAttachments.DEATH_SAVE_SUCCESSES;
+
 public class UnconsciousEffect extends MobEffect {
     protected UnconsciousEffect(MobEffectCategory category, int color) {
         super(category, color);
@@ -46,6 +49,12 @@ public class UnconsciousEffect extends MobEffect {
         if (!entity.hasEffect(MobEffects.BLINDNESS))
         {
             entity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, Integer.MAX_VALUE, 0, false, false,false));
+        }
+        if (!entity.hasEffect(ModEffects.DYING_EFFECT) && (entity.getData(DEATH_SAVE_FAILURES) > 0 || entity.getData(DEATH_SAVE_SUCCESSES ) > 0))
+        {
+            if(entity.getHealth() < 0.9f){
+                entity.addEffect(new MobEffectInstance(ModEffects.DYING_EFFECT, 200, 0, false, false,false));
+            }
         }
         if(entity.getMainHandItem() != ItemStack.EMPTY || entity.getOffhandItem() != ItemStack.EMPTY){
             if(entity instanceof Player player){

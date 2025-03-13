@@ -24,6 +24,8 @@ public class ModEffects {
     public static final Holder<MobEffect> UNCONSCIOUS_EFFECT = MOB_EFFECTS.register("unconscious",
             () -> new UnconsciousEffect(MobEffectCategory.HARMFUL, 0x36ebab));
 
+    public static final Holder<MobEffect> DYING_EFFECT = MOB_EFFECTS.register("dying",
+            () -> new DyingEffect(MobEffectCategory.HARMFUL, 0x36ebab));
 
     public static void register(IEventBus eventBus) {
         MOB_EFFECTS.register(eventBus);

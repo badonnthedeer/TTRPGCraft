@@ -1,18 +1,22 @@
 package com.badonnthedeer.ttrpg_craft.event;
 
 import com.badonnthedeer.ttrpg_craft.TTRPGCraft;
+import com.badonnthedeer.ttrpg_craft.attachment.TTRPGAttachments;
 import com.badonnthedeer.ttrpg_craft.common.entity.TTRPGAttributes;
 import com.badonnthedeer.ttrpg_craft.effect.ModEffects;
 import com.badonnthedeer.ttrpg_craft.network.ClearForcedPoseData;
 import com.badonnthedeer.ttrpg_craft.registry.ModDamageTypeTags;
+import com.badonnthedeer.ttrpg_craft.registry.ModDamageTypes;
 import com.badonnthedeer.ttrpg_craft.util.TTRPGAttribute;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -20,12 +24,15 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.common.damagesource.DamageContainer;
 import net.neoforged.neoforge.event.PlayLevelSoundEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
@@ -33,12 +40,16 @@ import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.Objects;
 
 import static com.badonnthedeer.ttrpg_craft.TTRPGCraft.RAND;
+import static com.badonnthedeer.ttrpg_craft.attachment.TTRPGAttachments.DEATH_SAVE_FAILURES;
+import static com.badonnthedeer.ttrpg_craft.attachment.TTRPGAttachments.DEATH_SAVE_SUCCESSES;
+import static com.badonnthedeer.ttrpg_craft.util.DeathSave.RollDeathSave;
 
 
 @EventBusSubscriber(modid = TTRPGCraft.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
@@ -175,8 +186,14 @@ public class ModEvents
                 livingEntity.removeEffect(ModEffects.UNCONSCIOUS_EFFECT);
             }
         }
-        if (event.getSource().getEntity() instanceof Player player)
+        if (event.getEntity() instanceof Player player)
         {
+            if(player.hasEffect(ModEffects.DYING_EFFECT))
+            {
+                player.setData(DEATH_SAVE_FAILURES, (player.getData(DEATH_SAVE_FAILURES) + 1));
+                //in case of drowning. GetLastDamageSource becomes null, so we can't check it.
+                player.setAirSupply(player.getMaxAirSupply());
+            }
             player.sendSystemMessage(Component.literal(String.format("%.2f -> %s %.2f", event.getOriginalDamage(), event.getSource().type().msgId(), event.getNewDamage())));
         }
     }
@@ -184,10 +201,33 @@ public class ModEvents
     @SubscribeEvent
     public static void onEntityDeath(LivingDeathEvent event)
     {
-        if(event.getEntity() instanceof Player player){
-            player.setHealth(.01f);
-            player.addEffect(new MobEffectInstance(ModEffects.UNCONSCIOUS_EFFECT, Integer.MAX_VALUE, 1, false, false, true));
-            event.setCanceled(true);
+        if(event.getEntity() instanceof Player player) {
+            if (!event.getSource().is(DamageTypes.GENERIC_KILL)) {
+                int fails = player.getData(DEATH_SAVE_FAILURES);
+                if (player.hasEffect(ModEffects.DYING_EFFECT)) {
+                    if (fails <= 2)
+                    {
+                        player.sendSystemMessage(Component.literal(String.format("Death Save Failures: %s", fails)));
+                        player.setData(DEATH_SAVE_FAILURES, fails);
+                        player.setHealth(.01f);
+                        event.setCanceled(true);
+                    }
+                    else
+                    {
+                        player.sendSystemMessage(Component.literal("Death Save Failures: 3. Rest in peace."));
+                        player.setData(DEATH_SAVE_SUCCESSES, 0);
+                        player.setData(DEATH_SAVE_FAILURES, 0);
+                        player.removeEffect(ModEffects.UNCONSCIOUS_EFFECT); //to remove deafening
+                        player.setHealth(0);
+                        event.setCanceled(false);
+                    }
+                }
+                else {
+                    player.addEffect(new MobEffectInstance(ModEffects.DYING_EFFECT, 200, 0, false, true, true));
+                    player.setHealth(.01f);
+                    event.setCanceled(true);
+                }
+            }
         }
     }
 
@@ -195,6 +235,7 @@ public class ModEvents
     public static void onSoundPlay(PlayLevelSoundEvent event)
     {
         //do silence effect here, eventually
+        // you'll have to check distance to a silence effect. Could be like lingering effect / dragon breath?
     }
 
     @SubscribeEvent
@@ -203,6 +244,12 @@ public class ModEvents
         MobEffectInstance instance = event.getEffectInstance();
         if (instance == null) {
             return;
+        }
+
+        if (instance.getEffect().value() == ModEffects.DYING_EFFECT.value() && event.getEntity() instanceof Player player && !player.isDeadOrDying()) {
+            player.setData(DEATH_SAVE_FAILURES, 0);
+            player.setData(DEATH_SAVE_SUCCESSES, 0);
+
         }
 
         HandleEffectRemoval(event.getEntity(), instance);
@@ -216,6 +263,14 @@ public class ModEvents
             return;
         }
 
+        if (instance.getEffect().value() == ModEffects.DYING_EFFECT.value() && event.getEntity() instanceof Player player && !player.isDeadOrDying()) {
+            RollDeathSave(player);
+            if (player.getHealth() < 0.9f)
+            {
+                player.addEffect(new MobEffectInstance(ModEffects.DYING_EFFECT, 200, 0, false, false, true));
+            }
+        }
+
         HandleEffectRemoval(event.getEntity(), instance);
     }
 
@@ -227,6 +282,7 @@ public class ModEvents
         {
             event.setCanceled(true);
         }
+
     }
 
     @SubscribeEvent
@@ -254,6 +310,14 @@ public class ModEvents
         {
             event.setCanceled(true);
         }
+    }
+
+    @SubscribeEvent
+    public static void HandlePlayerRespawn(PlayerEvent.PlayerRespawnEvent event)
+    {
+        //sometime players respawn from death deaf
+        float masterVolumeInOptions = Minecraft.getInstance().options.getSoundSourceVolume(SoundSource.MASTER);
+        Minecraft.getInstance().getSoundManager().updateSourceVolume(SoundSource.MASTER, masterVolumeInOptions);
     }
 
     public static void HandleEffectRemoval(LivingEntity entity, MobEffectInstance mobEffectInstance)
