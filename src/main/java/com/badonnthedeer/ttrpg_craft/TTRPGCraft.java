@@ -1,5 +1,6 @@
 package com.badonnthedeer.ttrpg_craft;
 
+import com.badonnthedeer.ttrpg_craft.attachment.TTRPGAttachments;
 import com.badonnthedeer.ttrpg_craft.client.gui.CharacterSheetScreen;
 import com.badonnthedeer.ttrpg_craft.client.gui.GuiEventHandler;
 import com.badonnthedeer.ttrpg_craft.client.gui.ModMenuTypes;
@@ -49,6 +50,7 @@ public class TTRPGCraft
 
         NeoForge.EVENT_BUS.register(this);
 
+        TTRPGAttachments.register(modEventBus);
         TTRPGAttributes.register(modEventBus);
         ModMenuTypes.register(modEventBus);
         ModEnchantmentEffects.register(modEventBus);
